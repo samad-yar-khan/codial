@@ -5,7 +5,6 @@ const port = 8000;
 //we need to sepaerate the controllers from the index.js 
 //for that we setup and express router such that all requests go in that router and after that they
 //are matched with a conrroller
-
 app.use('/' , require('./routes'));//by default it will giive us an index.js file
 
 app.listen(port , function(err){
