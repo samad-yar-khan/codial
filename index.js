@@ -1,11 +1,17 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-
 //we need to sepaerate the controllers from the index.js 
 //for that we setup and express router such that all requests go in that router and after that they
 //are matched with a conrroller
 app.use('/' , require('./routes'));//by default it will giive us an index.js file
+
+//setup the veiws engine as ejs
+//set has a bunch of properties which can be mapped using the function express and setup
+//major properties 
+app.set('view engine' , 'ejs');
+app.set('views' , './views');
+
 
 app.listen(port , function(err){
 
