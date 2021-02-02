@@ -3,6 +3,7 @@ const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
+const db = require('./config/index');
 
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
