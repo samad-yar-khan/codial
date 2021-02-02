@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
 const port = 8000;
+const expressLayouts = require('express-ejs-layouts');
+
+//we need to  use this before the routes are called so that
+//the controllers know that we need a layout with the veiws
+app.use(express.static('./assets'));
+app.use(expressLayouts);
+
 //we need to sepaerate the controllers from the index.js 
 //for that we setup and express router such that all requests go in that router and after that they
 //are matched with a conrroller
