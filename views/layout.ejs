@@ -6,6 +6,7 @@
             <%=title%>
         </title>
         <link rel="stylesheet" href="/css/layout.css">
+        <%- style %><!--Style from the rendered pages boody placed here-->
     </head>    
 
     <body>
@@ -15,5 +16,7 @@
         <%- body%>
 
         <%- include("_footer");   %>
+
+        <%- script%><!--Script from the page-->
     </body>
 </html>
