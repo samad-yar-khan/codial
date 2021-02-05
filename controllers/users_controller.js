@@ -32,3 +32,13 @@ module.exports.signIn = function (req , res) {
     });
 
 }
+
+//Controller to handlle the sign up , when data is sent from the browser
+module.exports.create = function (req , res) {
+    
+}
+
+//create session for the user after sign in 
+module.exports.createSession = function (req, res) {
+    
+}
