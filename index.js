@@ -5,6 +5,7 @@ const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const db = require('./config/index');
 const User = require('./models/user');
+const cookieParser = require("cookie-parser");
 
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
@@ -15,6 +16,10 @@ app.use(expressLayouts);
 //extract the styles and scripts from pages to the ayout
 app.set('layout extractStyles' , true);
 app.set('layout extractScripts' , true);
+
+app.use(express.urlencoded());
+//ask express to use coockie parser
+app.use(cookieParser());
 
 //we need to sepaerate the controllers from the index.js 
 //for that we setup and express router such that all requests go in that router and after that they
