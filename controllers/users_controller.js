@@ -6,9 +6,15 @@ const db = require("../config/index");
 //these are all actions
 module.exports.profile = function(req ,res){
     
+    if(req.query.email== undefined){
+        return res.redirect('/users/sign-in')
+    }
+
     return res.render('user_profile' , {
        title : "PROFILE",
-       heading : "PROFILE PAGE" 
+       heading : "PROFILE PAGE",
+       userName:req.query.name,
+       userEmail:req.query.email
     });
 };
 
@@ -69,5 +75,34 @@ module.exports.create = function (req , res) {
 
 //create session for the user after sign in 
 module.exports.createSession = function (req, res) {
+    //we check if the user with the given mail even exist or not
+    //if user exist then we match pass
+    //if pass maatches we got to profile , else we are redicted to login
+    User.findOne({email:req.body.email} , function(err , user) {
+
+
+        if(err){
+            console.log("Unable to login !");
+            return res.redirect('back');
+        }
+
+        if(!user){ //user does not exist
+            console.log("User not found !");
+            return res.redirect('/users/sign-up');
+        }else{
+
+            if(user.password == req.body.password){
+                res.cookie('user_id' , user._id);
+                var rUrl = "/users/profile/?name="+user.name;
+                rUrl += "&email="+user.email;
+                return res.redirect(rUrl);
+            }else{
+                console.log(" Wrong Password !");
+                return res.redirect('back');
+            }
+
+        } 
+   
+    } );
     
-}
+};

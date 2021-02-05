@@ -3,6 +3,7 @@ module.exports.home = function(req ,res){
 
     // console.log(req.cookies);
     // res.cookie('user_id' , 100);
+    console.log(req.query);
     return res.render('home' , {
         title:"home",
         heading:"THIS IS HOME"
