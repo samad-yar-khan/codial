@@ -75,12 +75,33 @@ module.exports.signIn = function (req , res) {
     //     });
     // }
 
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id , function (err , user1) {
+            
+            if(err){
+                console.log("Error finding user by cookkie!");
+                return res.render('user_sign_in' , {
+                    title:"CODIAL|SIGNIN"
+                });
+            }else{
 
+                if(user1){
+                    return res.redirect('/users/profile');
+                }else{
+                    return res.render('user_sign_in' , {
+                        title:"CODIAL|SIGNIN"
+                    });
+                }
 
+            }
+        }
+        );
+    
+    }else{
         return res.render('user_sign_in' , {
             title:"CODIAL|SIGNIN"
         });
-    
+    }
 
 
    
