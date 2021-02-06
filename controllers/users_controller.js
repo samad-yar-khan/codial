@@ -50,11 +50,38 @@ module.exports.posts = function(req,res){
 //render the sign up page
 module.exports.signUp = function (req , res) {
 
-    //before sign in or sign out check if user is already logged in our not
+    //before sign in or sign up check if user is already logged in our not
+    //if we find a cookie we try to match the user id with one of teh users,
+    //if we are able to match the user id stores in cookies to one in the db we go 
+    // to the profile page
     
-    return res.render('user_sign_up' , {
-        title : "CODIAL|SIGNUP",
-    });
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id , function (err , user1) {
+            
+            if(err){
+                console.log("Error finding user by cookkie!");
+                return res.render('user_sign_up' , {
+                    title : "CODIAL|SIGNUP",
+                });
+            }else{
+
+                if(user1){
+                    return res.redirect('/users/profile');
+                }else{
+                    return res.render('user_sign_up' , {
+                        title : "CODIAL|SIGNUP",
+                    });
+                }
+
+            }
+        }
+        );
+    
+    }else{
+        return res.render('user_sign_up' , {
+            title : "CODIAL|SIGNUP",
+        });
+    }
 
 }
 
