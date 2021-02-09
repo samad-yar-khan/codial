@@ -7,6 +7,14 @@ const db = require('./config/index');
 const User = require('./models/user');
 const cookieParser = require("cookie-parser");
 
+//used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport_local_strategy');
+const { pass } = require("./config/index");
+
+
+
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
 app.use(express.static('./assets'));
@@ -31,6 +39,21 @@ app.use('/' , require('./routes'));//by default it will giive us an index.js fil
 //major properties 
 app.set('view engine' , 'ejs');
 app.set('views' , './views');
+
+//setting up the pasport session
+app.use(session({
+    name:'codial' ,
+    //TO DO change the secret before deploymnet in productioon mode
+    secret : 'blahblah' ,
+    saveUninitialized : false ,
+    resave : false ,
+    cookie : {
+        maxAge : (1000*60*100) //this is the milli seconds
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.listen(port , function(err){

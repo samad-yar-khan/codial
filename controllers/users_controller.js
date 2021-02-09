@@ -2,6 +2,8 @@
 
 const User = require("../models/user");
 const db = require("../config/index");
+const { Cookie } = require("express-session");
+const passport = require('passport');
 
 //these are all actions
 module.exports.profile = function(req ,res){
@@ -69,5 +71,7 @@ module.exports.create = function (req , res) {
 
 //create session for the user after sign in 
 module.exports.createSession = function (req, res) {
+
+    return res.redirect('/');
     
 }
