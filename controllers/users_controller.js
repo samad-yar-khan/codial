@@ -18,9 +18,21 @@ module.exports.posts = function(req,res){
     res.end('<h1>POST FOR USER</h1>');
 } ;
 
+//this funtcion will check if a user is already sighned in or not 
+//and if its signed in , then we will be directed to profile 
+//we can use this to avid sieng signup / sign in pages even when logged in
+function checkSignedIn(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+}
+
+
 //render the sign up page
 module.exports.signUp = function (req , res) {
     
+    checkSignedIn(req,res);//if we are sighne in already we are directed to the profile page
+
     return res.render('user_sign_up' , {
         title : "CODIAL|SIGNUP",
     });
@@ -29,6 +41,9 @@ module.exports.signUp = function (req , res) {
 
 //RENDER THE SIGN IIN PAGE
 module.exports.signIn = function (req , res) {
+
+    checkSignedIn(req,res); //if we are sighne in already we are directed to the profile page
+
     
     return res.render('user_sign_in' , {
         title:"CODIAL|SIGNIN"
