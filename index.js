@@ -7,12 +7,16 @@ const db = require('./config/index');
 const User = require('./models/user');
 const cookieParser = require("cookie-parser");
 
+
 //used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
 const { pass } = require("./config/index");
 
+
+//connect-mongo to store cooied even after server restarts
+const MongoStore = require('connect-mongo')(session);//we need to pass the session as argument when we require the mongoconnect as we want to store the session cookies in data base
 
 
 //we need to  use this before the routes are called so that
@@ -36,6 +40,7 @@ app.set('view engine' , 'ejs');
 app.set('views' , './views');
 
 //setting up the pasport session
+//mongosttore is useed to store session cookies in the db
 app.use(session({
     name:'codial' ,
     //TO DO change the secret before deploymnet in productioon mode
@@ -44,7 +49,20 @@ app.use(session({
     resave : false ,
     cookie : {
         maxAge : (1000*60*100) //this is the milli seconds
+    },
+    store : new MongoStore({
+        mongooseConnection : db,
+        autoRemove : 'disabled'
+    },
+    //make a calllback func to handle error
+    function(err){
+        if(err){
+            console.log('ERROR in connecting mongoose store to db : ', err );
+        }else{
+            console.log('mongoStore connected to db');
+        }
     }
+    )
 }));
 
 app.use(passport.initialize());
