@@ -50,6 +50,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//this middlwre will be called each time and if aa user is authenticated , it will send the user data to the locals , so it can be used  by views
+app.use(passport.setAuthenticatedUser);
 
 //we need to sepaerate the controllers from the index.js 
 //for that we setup and express router such that all requests go in that router and after that they
