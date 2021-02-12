@@ -19,6 +19,7 @@ router.post('/create-session' , passport.authenticate(
     ,usersController.createSession ); //if authentication validates  then we ares sent to the controller automatically
 
 
+router.get('/sign-out' , usersController.destroySession);
 module.exports = router;
 
 
