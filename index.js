@@ -29,11 +29,6 @@ app.use(express.urlencoded());
 //ask express to use coockie parser
 app.use(cookieParser());
 
-//we need to sepaerate the controllers from the index.js 
-//for that we setup and express router such that all requests go in that router and after that they
-//are matched with a conrroller
-app.use('/' , require('./routes'));//by default it will giive us an index.js file
-
 //setup the veiws engine as ejs
 //set has a bunch of properties which can be mapped using the function express and setup
 //major properties 
@@ -54,6 +49,12 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+//we need to sepaerate the controllers from the index.js 
+//for that we setup and express router such that all requests go in that router and after that they
+//are matched with a conrroller
+app.use('/' , require('./routes'));//by default it will giive us an index.js file
 
 
 app.listen(port , function(err){

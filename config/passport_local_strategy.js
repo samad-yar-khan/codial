@@ -25,9 +25,10 @@ passport.use( new LocalStrategy({
         if(!user || user.password != password){
             console.log("invalid username password!");
             return done(null , false); //false indicates that we couldnt authorize the user
-        }else{
-            return done(null , user); 
         }
+
+            return done(null , user); 
+        
 
      
     })
@@ -37,7 +38,7 @@ passport.use( new LocalStrategy({
 //but here the data sselected by us is encrypted and sent to the broweser as a ccookie by passport using SERIALIZING
 
 passport.serializeUser(function(user, done) {
-    return done(user.id);
+    return done( null,user.id);
 });
 
 
@@ -55,4 +56,4 @@ passport.deserializeUser(function(id , done) {
     });
 });
 
-module.exports =passport;
+module.exports=passport;
