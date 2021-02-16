@@ -6,18 +6,28 @@ const path = require('path');
 const db = require('./config/index');
 const User = require('./models/user');
 const cookieParser = require("cookie-parser");
+const sassMiddelware = require('node-sass-middleware'); //this middeware helps node convert sass files to css before sening back to ths server
+
 
 
 //used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
-const { pass } = require("./config/index");
 
 
-//connect-mongo to store cooied even after server restarts
+//connect-mongo to store cookies even after server restarts
 const MongoStore = require('connect-mongo')(session);//we need to pass the session as argument when we require the mongoconnect as we want to store the session cookies in data base
 
+//before the veiws are rendered we need to setup the sass middlware so files are convverted to css
+app.use(sassMiddelware({
+
+    src : '/assets/scss' ,//dir location of our sass files
+    dest : '/assets/css' , //this decides where to put the rendered css files 
+    debug : true , //this debug mode is true for development mode so that wecan debig and get the errors , but in the deploymnet mode this will be false
+    outputStyle:extended , //means we want all our code in different lines
+    prefix : '/css' //this tells what prefix to look for in our asstes folder when we look for css files
+}))
 
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
