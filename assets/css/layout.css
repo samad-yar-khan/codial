@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+  background-color: #d9e0ee;
+  color: black; }
+  body #main-body {
+    height: 100%; }

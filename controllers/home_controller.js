@@ -5,7 +5,7 @@ module.exports.home = function(req ,res){
     // res.cookie('user_id' , 100);
     return res.render('home' , {
         title:"home",
-        heading:"THIS IS HOME"
+        heading:"Welcome To Codial !"
     })
 
 }

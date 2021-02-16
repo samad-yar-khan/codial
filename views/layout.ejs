@@ -6,6 +6,8 @@
             <%=title%>
         </title>
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/_header.css">
+        <link rel="stylesheet" href="/css/_footer.css">
         <%- style %><!--Style from the rendered pages boody placed here-->
     </head>    
 
@@ -13,7 +15,10 @@
 
         <%- include("_header"); %>
 
-        <%- body%>
+        <main id='main-body'>
+            <%- body%>
+        </main>
+       
 
         <%- include("_footer");   %>
 

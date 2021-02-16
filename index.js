@@ -22,8 +22,8 @@ const MongoStore = require('connect-mongo')(session);//we need to pass the sessi
 //before the veiws are rendered we need to setup the sass middlware so files are convverted to css
 app.use(sassMiddelware({
 
-    src : '/assets/scss' ,//dir location of our sass files
-    dest : '/assets/css' , //this decides where to put the rendered css files 
+    src : './assets/scss' ,//dir location of our sass files
+    dest : './assets/css' , //this decides where to put the rendered css files 
     debug : true , //this debug mode is true for development mode so that wecan debig and get the errors , but in the deploymnet mode this will be false
     outputStyle:'extended' , //means we want all our code in different lines
     prefix : '/css' //this tells what prefix to look for in our asstes folder when we look for css files

@@ -1,11 +1,19 @@
-body{
-    margin: 0;
-    text-align: center;
+
+main{
+
+    height: 100%;
     font-family: sans-serif;
+    
+    #page-heading{
+
+        font-size: 2rem;
+        color: black;
+    
+    }
+
+    #user-name , #user-email{
+        font-size: 1.5rem;
+        color: black;
+    }
 }
 
-
-h1{
-    color: white;
-    background-color: rgb(71, 99, 255);
-}
