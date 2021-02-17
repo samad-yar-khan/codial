@@ -12,9 +12,25 @@
         </p>
 
         <section id='feed-posts'>
-            <h4>
+            <h2>
                 POSTS
-            </h4>
+            </h2>
+
+            <div id="postsDisplay">
+
+                <% for(p of PostList) { %>
+
+                <h3>
+                    <%= p.user.name %>
+                </h3>
+                <p>
+                   
+                    <%= p.content %>
+                </p>
+
+                <% } %>
+
+            </div>
 
             <% if (locals.user) { %>
 
