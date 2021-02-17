@@ -10,6 +10,27 @@
         <p>
             Codial is a social media platform created for programming enthusuists !
         </p>
+
+        <section id='feed-posts'>
+            <h4>
+                POSTS
+            </h4>
+
+            <% if (locals.user) { %>
+
+                <form action="/posts/create" method="POST">
+
+                    <textarea name="content" id="content" cols="50" rows="5"></textarea>
+                    <input type="submit" value="created-post">
+
+                </form>
+
+            <% } else {%>
+                <p>
+                    User Must be Logged in to post!
+                </p>
+            <% } %>
+        </section>
         
 </main>
 

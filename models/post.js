@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
     content:{
-        type:string ,
+        type: String ,
         required:true
     },
-    user:{
+    user:{ //this user refers to our user in the DB and will take ref from the user schemaa
         type:mongoose.Schema.Types.ObjectId,
-        refer : 'User'
+        ref : 'User'
     }
 },{
     timestamps:true

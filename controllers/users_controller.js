@@ -1,6 +1,7 @@
 //also called an action
 
 const User = require("../models/user");
+const Post = require("../models/post");
 const db = require("../config/index");
 const { Cookie } = require("express-session");
 
@@ -95,3 +96,4 @@ module.exports.destroySession = function(req , res){
 
     return res.redirect('/');
 }
+
