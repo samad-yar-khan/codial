@@ -4,12 +4,10 @@ const Post = require("../models/post");
 const db = require("../config/index");
 
 module.exports.createPost = function(req , res){
-    if(!(req.isAuthenticated())){
-        return res.redirect('/users/sign-in');
-    }
 
     const myUsersID = req.user._id;
     const postContent = req.body.content;
+    
     Post.create({
         content:postContent,
         user:myUsersID

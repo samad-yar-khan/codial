@@ -3,4 +3,6 @@ body {
   background-color: #d9e0ee;
   color: black; }
   body #main-body {
-    height: 100%; }
+    min-height: 100%;
+    height: fit-content;
+    margin-bottom: 20px; }
