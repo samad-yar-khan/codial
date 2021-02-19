@@ -2,13 +2,22 @@
 const db = require('../config/index');//mongoose
 const User = require('../models/user');
 const Post = require('../models/post');
+const Comments = require('../models/comment');
 
 
 
 module.exports.home = function(req ,res){
 
 
-    Post.find({}).populate('user').exec(function(err,posts){
+    Post.find({})
+    .populate('user')
+    .populate({ //prepolate comments aswelas the name user of each user bby nestiing
+        path : 'comments',
+        populate : {
+            path: 'user'
+        }
+    })
+    .exec(function(err,posts){
 
         if(err){
             console.log("error showing posts !");
