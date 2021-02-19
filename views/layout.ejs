@@ -13,15 +13,17 @@
 
     <body>
 
-        <%- include("_header"); %>
+        <div id="header">
+            <%- include("_header"); %>
+        </div>
+        <div class="minus-header">
+            <main id='main-body'>
+                <%- body%>
+            </main>
+        
 
-        <main id='main-body'>
-            <%- body%>
-        </main>
-       
-
-        <%- include("_footer");   %>
-
+            <%- include("_footer");   %>
+        </div>
         <%- script%><!--Script from the page-->
     </body>
 </html>

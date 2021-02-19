@@ -37,10 +37,10 @@ module.exports.destroy = function(req,res){
 
         //now we check if the person deleting the post must be authour of the post 
         //we havent populated user yet , so it must be the user id
-        if(post.user == user.id){
+        if(post.user == req.user.id){
 
             //deleted the post 
-            post.Remove();
+            post.remove();
             //now go to the db and dlete aall the comments from that post 
             //the id of the post is still there in the param
             Comments.deleteMany({post:req.params.id} , function(err){ //this will delete the comments whose post field has the id of our post

@@ -1,8 +1,13 @@
 body {
   margin: 0;
-  background-color: #d9e0ee;
-  color: black; }
+  background: linear-gradient(90deg, #020024 0%, #322cf8 49%, #985cf9 100%);
+  color: black;
+  position: relative; }
+  body .minus-header {
+    position: relative;
+    top: 100px; }
   body #main-body {
+    position: relative;
     min-height: 100%;
     height: fit-content;
     margin-bottom: 20px; }

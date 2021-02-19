@@ -21,7 +21,7 @@
 
                 <form action="/posts/create" method="POST" id="form-posts">
 
-                    <textarea name="content" id="content" required></textarea>
+                    <textarea name="content" id="content" placeholder="Hey ! wanna share something ?" required></textarea>
                     <input type="submit" value="POST" id="submit-btn">
 
                 </form>
@@ -46,10 +46,11 @@
                         <div class='post-btns'>
                             <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
 
-                            <% if(locals.user && locals.user.id == p.user)%>
-                            <a href="/posts/destroy">
-                               <button class='delete-post-btn' >Delete</button>
-                            </a>
+                            <% if(locals.user && (locals.user.id == p.user.id)) {%>
+                                <a href="/posts/destroy/<%= p.id %>">
+                                <button class='delete-post-btn' >Delete</button>
+                                </a>
+                            <% } %>
                             </div>
                         <div class="post-comments hidden" id="comment-section-<%= p.id %>">
                             <% if(locals.user){ %>

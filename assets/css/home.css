@@ -16,14 +16,14 @@ main {
       font-size: 1.5rem; }
   main #feed-posts {
     padding: 20px;
-    border: 4px solid #00aeff;
+    border: 4px solid #020024;
     width: 80%;
     border-radius: 10px; }
     main #feed-posts h2 {
       letter-spacing: 2px;
-      color: #0384c0; }
+      color: white; }
     main #feed-posts #posts-display {
-      background-color: #0384c0;
+      background: linear-gradient(63deg, #020024 0%, #322cf8 70%, #7a31f0 100%);
       margin: 10px;
       border-radius: 10px;
       padding: 5px; }
@@ -55,22 +55,22 @@ main {
         main #feed-posts #form-posts textarea:active {
           outline: none; }
       main #feed-posts #form-posts #submit-btn {
-        height: 50px;
-        width: 120px;
+        height: 30px;
+        width: 60px;
         margin-top: 10px;
-        background-color: #0384c0;
+        background-color: #020024;
         color: white;
-        letter-spacing: 2px;
-        font-size: 1.5rem;
+        font-size: 1rem;
         padding: 5px;
-        border-radius: 25px;
+        border-radius: 5px;
         font-weight: 600;
         outline: none; }
         main #feed-posts #form-posts #submit-btn:hover {
           cursor: pointer; }
         main #feed-posts #form-posts #submit-btn:active {
           outline: none;
-          transform: scale(0.95); }
+          transform: scale(0.95);
+          border: none; }
 
 .hidden {
   display: none; }

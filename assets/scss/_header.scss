@@ -1,22 +1,23 @@
-$main-blue : rgb(0, 174, 255);
+$main-purple : rgba(122,49,240,1);
 
 header{
-
+    z-index: 2;
+    position: fixed;
+    top:0;
     box-sizing: border-box;
     background-color: whitesmoke;
     width: 100%;
     margin: 0;
     padding: 5px;
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid ;
     height: 3rem;
     display: flex;
- 
+    box-shadow: 0px 4px 10px rgba(2,0,36,1);
     justify-content: space-between;
     align-items: center;
     top: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: $main-blue;
-
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(50,44,248,1) 49%, rgba(152,92,249,1) 100%);
     #page-heading{
         font-family: sans-serif;
         font-size: 2.5rem;
@@ -48,11 +49,13 @@ header{
             a{
 
                 text-decoration: none;
-                color: $main-blue;
+                color: $main-purple
+            ;
                 border-bottom: none;
 
                 &:visited{
-                    color: $main-blue;
+                    color: $main-purple
+                ;
                 }
 
                 &:hover , &:active{
