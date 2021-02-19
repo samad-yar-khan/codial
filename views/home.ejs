@@ -45,6 +45,8 @@
                         </p>
                         <div class='post-btns'>
                             <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
+
+                            <% if(locals.user && locals.user.id == p.user)%>
                             <a href="/posts/destroy">
                                <button class='delete-post-btn' >Delete</button>
                             </a>

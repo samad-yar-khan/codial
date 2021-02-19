@@ -1,6 +1,7 @@
 
 const User = require("../models/user");
 const Post = require("../models/post");
+const Comments = require('../models/comment');
 const db = require("../config/index");
 
 module.exports.createPost = function(req , res){
