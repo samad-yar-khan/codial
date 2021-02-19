@@ -45,7 +45,10 @@
                         </p>
                         <div class='post-btns'>
                             <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
-                        </div>
+                            <a href="/posts/destroy">
+                               <button class='delete-post-btn' >Delete</button>
+                            </a>
+                            </div>
                         <div class="post-comments hidden" id="comment-section-<%= p.id %>">
                             <% if(locals.user){ %>
                                 <form action="/comments/create" method="POST" class="comment-form">
