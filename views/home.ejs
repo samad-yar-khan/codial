@@ -43,18 +43,21 @@
                         
                             <%= p.content %>
                         </p>
-
-                        <div class="post-comments">
+                        <div class='post-btns'>
+                            <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
+                        </div>
+                        <div class="post-comments hidden" id="comment-section-<%= p.id %>">
                             <% if(locals.user){ %>
                                 <form action="/comments/create" method="POST" class="comment-form">
-                                    <input type="text" name="content" placeholder="Add a comment !">
+                                    <input type="text" name="content" placeholder="Add a comment !" required>
+
                                     <!-- we are not taking this as input , each comment will automiatcially link to its post -->
                                     <input type="hidden" name="post" value="<%= p._id %>"> 
                                     <input type="submit" value="Add Comment">
                                 </form>
-                            <% } %>
+                            <% } %> 
 
-                            <div class="post-comments-list">
+                            <div class="post-comments-list " id="post-comments-wrapper-<%= p.id %>">
 
                                 <ul id="post-comments-<%= p.id %>">
 
@@ -84,5 +87,9 @@
             
         </section>
         
+   
 </main>
 
+<script  type="text/javascript" src="javascript/home.js" >
+
+</script>

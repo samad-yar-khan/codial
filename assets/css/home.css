@@ -71,3 +71,6 @@ main {
         main #feed-posts #form-posts #submit-btn:active {
           outline: none;
           transform: scale(0.95); }
+
+.hidden {
+  display: none; }
