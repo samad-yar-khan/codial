@@ -19,9 +19,13 @@ main {
             font-size: 1.5rem;
         }
     }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     #feed-posts{
             padding: 20px;
             border:4px solid $main-blue;
+            width: 80%;
             border-radius: 10px;
 
             h2{
@@ -71,9 +75,16 @@ main {
                    height: 4rem;
                    width: 96%;
                    border-radius: 10px;
-                   padding: 5px;
+                   padding: 10px;
                    resize: none;
+                   border: none;
+                   outline: none;
+
+                   &:active{
+                       outline: none;
+                   }
                }
+
 
                #submit-btn{
                    height: 50px;

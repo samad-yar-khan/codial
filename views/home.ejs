@@ -17,23 +17,6 @@
                 POSTS
             </h2>
 
-            <div id="posts-display-wrapper">
-
-                <% for(p of PostList) { %>
-                    <div id="posts-display">
-                        <h3>
-                            <%= p.user.name %>
-                        </h3>
-                        <p>
-                        
-                            <%= p.content %>
-                        </p>
-                    </div>
-
-                <% } %>
-
-            </div>
-
             <% if (locals.user) { %>
 
                 <form action="/posts/create" method="POST" id="form-posts">
@@ -45,9 +28,39 @@
 
             <% } else {%>
                 <p>
-                    User Must be Logged in to post!
+                    SIngUp to post to CODIAL !
                 </p>
             <% } %>
+
+            <div id="posts-display-wrapper">
+
+                <% for(p of PostList) { %>
+                    <div id="posts-display">
+                        <h3>
+                            <%= p.user.name %>
+                        </h3>
+                        <p>
+                        
+                            <%= p.content %>
+                        </p>
+
+                        <div class="post-comments">
+                            <% if(locals.user){ %>
+                                <form action="/comments/create" method="POST" class="comment-form">
+                                    <input type="text" name="content" placeholder="Add a comment !">
+                                    <!-- we are not taking this as input , each comment will automiatcially link to its post -->
+                                    <input type="hidden" name="post" value="<%= p._id %>"> 
+                                    <input type="submit" value="Add Comment">
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+
+                <% } %>
+
+            </div>
+
+            
         </section>
         
 </main>
