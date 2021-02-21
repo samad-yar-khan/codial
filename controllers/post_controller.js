@@ -44,9 +44,11 @@ module.exports.destroy = function(req,res){
             //now go to the db and dlete aall the comments from that post 
             //the id of the post is still there in the param
             Comments.deleteMany({post:req.params.id} , function(err){ //this will delete the comments whose post field has the id of our post
+                if(err){
                 console.log(err)
                     return;
-             });
+                }
+                   });
 
              return res.redirect('back');
 
