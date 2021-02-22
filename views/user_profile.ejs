@@ -5,6 +5,15 @@
             <%=heading%> 
         </h1>
 
+        <% if( locals.user && locals.user.id == profile_user.id) { %>
+
+            <form action="/users/update/<%= profile_user.id %>" method="POST">
+                <input type="text" name="users_name" id="users_name" value="<%= profile_user.name %> " required>
+                <input type="email" name="users_email" id="users_email" value="<%= profile_user.email %>" required>
+                <input type="submit" value="UPDATE">
+            </form>
+        
+        <% } else{ %>
             <h3 id='user-name'>
                <%= profile_user.name%>
             </h3>
@@ -12,5 +21,6 @@
             <h3 id='user-email'>
                 <%= profile_user.email%>
             </h3>
+        <%  }  %>
 
     </main>

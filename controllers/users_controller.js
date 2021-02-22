@@ -94,6 +94,25 @@ module.exports.create = function (req , res) {
 
 }
 
+module.exports.update = function(req,res){
+
+    if(req.user.id == req.params.id){
+
+        User.findByIdAndUpdate(req.user.id ,{name:  req.body.users_name, email:req.body.users_email} , function(err , user){
+            if(err){
+                console.log("user not found ! " , err);
+                return;
+            }
+
+            return res.redirect('back');
+        })
+
+    }else{
+        return res.status(401).send("UNAUTHORIZED!");
+    }
+
+}
+
 //create session for the user after sign in 
 module.exports.createSession = function (req, res) {
     return res.redirect('/');
