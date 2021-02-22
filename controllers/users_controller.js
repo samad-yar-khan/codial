@@ -117,7 +117,7 @@ module.exports.update = function(req,res){
 //create session for the user after sign in 
 module.exports.createSession = function (req, res) {
 
-    req.flash('success' , 'Logged in sucessfuly !')
+    req.flash('success' , 'Logged in sucessfuly !');
 
     return res.redirect('/');
 }
@@ -125,7 +125,7 @@ module.exports.createSession = function (req, res) {
 module.exports.destroySession = function(req , res){
 
     req.logout(); //this will log out the user using passport js
-    req.flash('success' , 'You have logged out !')
+    req.flash('success' , 'You have logged out !');
 
     return res.redirect('/');
 }

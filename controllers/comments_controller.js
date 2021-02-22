@@ -100,11 +100,12 @@ module.exports.create = async function( req , res ){
             post.save(); //savve must be called after each updation 
 
         }
-    
+        
+        req.flash('success' , "Comment Created !")
         return res.redirect('/');
     } catch (err) {
-        console.log("Error : ",err);
-        return ;
+        req.flash('error' , "err")
+        return res.redirect('back');
     }
     //before adding a comment check if the post on which we are trying to add the coments evven exitss or not 
 
@@ -133,11 +134,12 @@ module.exports.destroy = async function(req,res){
                 await Post.findByIdAndUpdate(postId ,{ $pull: {comments : commentId}});            
             }
         }
+
+        req.flash('success' , "COMMENT DELETED !" )
         return res.redirect('back');
 
     } catch (err) {
-        console.log("ERROR : ",err);
-        return;
-    }
+        req.flash('error' , err )
+        return res.redirect('back');    }
 
 }

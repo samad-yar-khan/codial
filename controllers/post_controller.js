@@ -73,11 +73,13 @@ module.exports.createPost = async function(req , res){
             user:myUsersID
         } );
 
-        return res.redirect('/');
+        req.flash('success' , "POST CREATED");
+        return res.redirect('back');
 
     }catch (error){
-        console.log("error creating new post in db ! ");
-        return res.redirect('/users/sign-in');
+       
+        req.flash('error' , "ERROR CREATING POST")
+        return res.redirect('back');
     }
 
 }
@@ -102,13 +104,15 @@ module.exports.destroy = async function(req,res){
             //the id of the post is still there in the param
             await Comments.deleteMany({post:req.params.id})
 
+            req.flash('success' , "Post and associated comments deleted !");
             return res.redirect('back');
 
         }else{
+            req.flash('success' , "Unable to delete post !")
             return res.redirect('back');
         }
     } catch (err) {
-        console.log("error : ",err);
+        req.flash('error' ,err)
         return res.redirect('back');
     }
 
