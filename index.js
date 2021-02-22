@@ -7,6 +7,8 @@ const db = require('./config/index');
 const User = require('./models/user');
 const cookieParser = require("cookie-parser");
 const sassMiddelware = require('node-sass-middleware'); //this middeware helps node convert sass files to css before sening back to ths server
+const flash = require ('connect-flash');//for flash messages
+const customMiddleware = require('./config/middleware');//has flash middle ware to transffer data from req to locals of res 
 
 
 
@@ -84,6 +86,11 @@ app.use(passport.setAuthenticatedUser);
 //we need to sepaerate the controllers from the index.js 
 //for that we setup and express router such that all requests go in that router and after that they
 //are matched with a conrroller
+
+//flash saves our flash messgaes in the cookkies /locals temporarily , just to show the message and deleted ot on reload
+app.use(flash()); //must be setup right after the session and before 
+app.use(customMiddleware.setFlash);
+
 app.use('/' , require('./routes'));//by default it will giive us an index.js file
 
 
