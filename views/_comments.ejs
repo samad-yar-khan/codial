@@ -1,11 +1,13 @@
-<div class="post-comments hidden" id="comment-section-<%= p.id %>">
+<link rel="stylesheet" href="css/_comments.css">
+
+<div class="post-comments hidden" id="comment-section-<%= p.id %>" >
     <% if(locals.user){ %>
         <form action="/comments/create" method="POST" class="comment-form">
             <input type="text" name="content" placeholder="Add a comment !" required>
 
             <!-- we are not taking this as input , each comment will automiatcially link to its post -->
             <input type="hidden" name="post" value="<%= p._id %>"> 
-            <input type="submit" value="Add Comment">
+            <input type="submit" value="POST" class="post-comment-btn">
         </form>
     <% } %> 
 
@@ -16,15 +18,15 @@
             <% for(comment of p.comments) {%>
 
                 <li>
-                    <h6>
+                    <h4>
                         <%= comment.user.name %>
-                    </h6>
-                    <p>
+                    </h4>
+                    <p class="comments-content">
                         <%= comment.content %>
                     </p>
                     <% if(locals.user && ((locals.user.id == comment.user.id) || (locals.user.id == p.user.id))){ %>
                     <a href="/comments/destroy/?commentId=<%= comment.id %>&postAuthor=<%= p.user.id  %>">
-                        <button>Delete</button>
+                        <button class="comments-delete-btn">Delete</button>
                     </a>
                     <% } %>
                 </li>
