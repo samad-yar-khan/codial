@@ -7,6 +7,7 @@ const { Cookie } = require("express-session");
 
 
 //these are all actions
+//No need to convert to async await as no nestes call back
 module.exports.profile = function(req ,res){
 
     User.findById(req.params.id , function(err, myUser){
