@@ -24,11 +24,22 @@ module.exports.home = function(req ,res){
             return;
         }
 
-        return res.render('home' , {
-            title:"home",
-            heading:"Welcome To Codial !",
-            PostList:posts
-        })
+        User.find({} , function(err , users){
+             
+            if(err){
+                return;
+            }
+
+
+            return res.render('home' , {
+                title:"home",
+                heading:"Welcome To Codial !",
+                PostList:posts,
+                all_users : users
+            });
+        });
+
+      
     });
  
     // console.log(req.cookies);

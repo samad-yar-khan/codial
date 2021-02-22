@@ -8,12 +8,21 @@ const { Cookie } = require("express-session");
 
 //these are all actions
 module.exports.profile = function(req ,res){
-    
-    return res.render('user_profile' , {
-       title : "PROFILE",
-       heading : "PROFILE PAGE" 
-    });
-};
+
+    User.findById(req.params.id , function(err, myUser){
+        if(err){
+            console.log("USER NOT FOUND !");
+            return;
+        }
+
+        return res.render('user_profile' , {
+            title : "PROFILE",
+            heading : "PROFILE PAGE",
+            profile_user: myUser
+         });
+
+    })
+}
 
 module.exports.posts = function(req,res){
     res.end('<h1>POST FOR USER</h1>');

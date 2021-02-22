@@ -1,13 +1,17 @@
 body {
   margin: 0;
+  height: 100%;
+  width: 100%;
   background: linear-gradient(90deg, #020024 0%, #322cf8 49%, #985cf9 100%);
   color: black;
   position: relative; }
   body .minus-header {
     position: relative;
-    top: 100px; }
+    top: 50px; }
   body #main-body {
+    margin: 0;
     position: relative;
     min-height: 100%;
     height: fit-content;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    padding-left: 0; }

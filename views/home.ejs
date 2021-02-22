@@ -12,92 +12,57 @@
             Codial is a social media platform created for programming enthusuists !
         </p>
     </div>
-        <section id='feed-posts'>
-            <h2>
-                POSTS
-            </h2>
+        
+    <div id="main-componets-wrapper">
 
-            <% if (locals.user) { %>
+        
+            <section id='feed-posts'>
+                <h2>
+                    POSTS
+                </h2>
 
-                <form action="/posts/create" method="POST" id="form-posts">
+                <% if (locals.user) { %>
 
-                    <textarea name="content" id="content" placeholder="Hey ! wanna share something ?" required></textarea>
-                    <input type="submit" value="POST" id="submit-btn">
+                    <form action="/posts/create" method="POST" id="form-posts">
 
-                </form>
+                        <textarea name="content" id="content" placeholder="Hey ! wanna share something ?" required></textarea>
+                        <input type="submit" value="POST" id="submit-btn">
 
-            <% } else {%>
-                <p>
-                    SIngUp to post to CODIAL !
-                </p>
-            <% } %>
-
-            <div id="posts-display-wrapper">
-
-                <% for(p of PostList) { %>
-                    <div id="posts-display">
-                        <h3>
-                            <%= p.user.name %>
-                        </h3>
-                        <p>
-                        
-                            <%= p.content %>
-                        </p>
-                        <div class='post-btns'>
-                            <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
-
-                            <% if(locals.user && (locals.user.id == p.user.id)) {%>
-                                <a href="/posts/destroy/<%= p.id %>">
-                                <button class='delete-post-btn' >Delete</button>
-                                </a>
-                            <% } %>
-                            </div>
-                        <div class="post-comments hidden" id="comment-section-<%= p.id %>">
-                            <% if(locals.user){ %>
-                                <form action="/comments/create" method="POST" class="comment-form">
-                                    <input type="text" name="content" placeholder="Add a comment !" required>
-
-                                    <!-- we are not taking this as input , each comment will automiatcially link to its post -->
-                                    <input type="hidden" name="post" value="<%= p._id %>"> 
-                                    <input type="submit" value="Add Comment">
-                                </form>
-                            <% } %> 
-
-                            <div class="post-comments-list " id="post-comments-wrapper-<%= p.id %>">
-
-                                <ul id="post-comments-<%= p.id %>">
-
-                                    <% for(comment of p.comments) {%>
-
-                                        <li>
-                                            <h6>
-                                                <%= comment.user.name %>
-                                            </h6>
-                                            <p>
-                                                <%= comment.content %>
-                                            </p>
-                                            <% if(locals.user && ((locals.user.id == comment.user.id) || (locals.user.id == p.user.id))){ %>
-                                            <a href="/comments/destroy/?commentId=<%= comment.id %>&postAuthor=<%= p.user.id  %>">
-                                                <button>Delete</button>
-                                            </a>
-                                            <% } %>
-                                        </li>
-
-                                    <% } %>
-
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
+                    </form>
 
                 <% } %>
 
-            </div>
 
-            
-        </section>
+                <div id="posts-display-wrapper">
+
+                    <% for(p of PostList) { %>
+                        
+                        <%- include('_posts') -%>
+
+                    <% } %>
+
+                </div>
+
+                
+            </section> 
+
+            <section id="user-friends">
+                <h2>
+                    FRIENDS
+                </h2>
+
+                <% for( User of all_users) {%>
+
+                    <p>
+                        <a href="users/profile/<%=User.id%>"><%= User.name %></a>
+                    </p>
+
+                <%}%>
+            </section>
+
+   
         
+    </div>
    
 </main>
 

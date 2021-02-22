@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="css/_posts.css">
+
+<div id="posts-display">
+    <h3>
+        <%= p.user.name %>
+    </h3>
+    <p>
+    
+        <%= p.content %>
+    </p>
+    <div class='post-btns'>
+        <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
+
+        <% if(locals.user && (locals.user.id == p.user.id)) {%>
+            <a href="/posts/destroy/<%= p.id %>">
+            <button class='delete-post-btn' >Delete</button>
+            </a>
+        <% } %>
+        </div>
+
+    <%- include('_comments') -%>
+
+</div>

@@ -1,9 +1,5 @@
 
 let commentDisplayBtns = document.getElementsByClassName('comments-btn');
-console.log("connected");
-console.log(commentDisplayBtns[0]);
-
-
 
 for(c of commentDisplayBtns){
 
@@ -18,7 +14,6 @@ for(c of commentDisplayBtns){
         }else{
             this.innerText = "Comments"
         }
-        console.log("hello");
     })
 
 }
