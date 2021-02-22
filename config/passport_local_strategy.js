@@ -10,20 +10,24 @@ const User = require('../models/user');
 //now we need to tell passport to us ethe local strategy
 passport.use( new LocalStrategy({
 
-    usernameField : 'email' //this is a property set by our pasport and we set it to our email as thats gonna be used as the username
-    }, function (email,password,done) { //done is a callback function
+    usernameField : 'email', //this is a property set by our pasport and we set it to our email as thats gonna be used as the username
+    
+    passReqToCallback : true //this will make the first argument fo call back to req , so we can set the vale of the flash message there 
+    
+    }, function (req,email,password,done) { //done is a callback function
     //find user and estaablish the identity 
     //the first username here is the email key in our user and the second is the email passed by us
     User.findOne( {email:email} , function (err,user) {
         //handling error
         if(err){
-            console.log("Error finding user ---> passport !");
+            req.flash('error' , err);
             return done(err);
         }
 
         //see if user exists and password match or not
         if(!user || user.password != password){
-            console.log("invalid username password!");
+           
+            req.flash('error' , "Invalid Username / Password!")
             return done(null , false); //false indicates that we couldnt authorize the user
         }
 
