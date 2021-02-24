@@ -68,10 +68,22 @@ module.exports.createPost = async function(req , res){
         const myUsersID = req.user._id;
         const postContent = req.body.content;
     
-        await Post.create({
+        post = await Post.create({
             content:postContent,
             user:myUsersID
         } );
+
+        //now the ajax requesr is a xmlhttprequest or an xhr request , so we need to detect if the req is ajax or not
+        if(req.xhr){
+           
+            return res.status(200).json({
+                data : {
+                    post : post,
+                    userName :  req.user.name
+                },
+                message: "Post Created !"
+            });
+        }
 
         req.flash('success' , "POST CREATED");
         return res.redirect('back');

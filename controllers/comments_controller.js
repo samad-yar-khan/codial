@@ -93,7 +93,7 @@ module.exports.create = async function( req , res ){
                 //yaha hamne seede user and post dala because wo type id hai to khud usse id extract karlega
                 user : req.user, //this was sttored ij the locals by passport
                 post : post
-            } );
+            });
 
                 //now we need to add this comments id to post
             post.comments.push(comment); //this by default  will just push our comments id to the comment array of our post
