@@ -12,7 +12,7 @@
         <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
 
         <% if(locals.user && (locals.user.id == p.user.id)) {%>
-            <a href="/posts/destroy/<%= p.id %>">
+            <a href="/posts/destroy/<%= p.id %>" class="delete-post-btn-link">
             <button class='delete-post-btn' >Delete</button>
             </a>
         <% } %>

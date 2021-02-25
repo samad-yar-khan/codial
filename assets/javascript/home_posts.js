@@ -1,22 +1,6 @@
 {
 
-    
-    // let newButtons = document.getElementsByClassName(' new-posts-btn');
-    // for(b of newButtons){
-    //     b.addEventListener('click' , function(){
-    //         console.log(this.getAttribute("post-id"))
-    //         var commentId = this.getAttribute("post-id");
-    //         var temp = "comment-section-";
-    //         commentId = temp+commentId;
-    //         var commentSection = document.getElementById(commentId);    
-    //         commentSection.classList.toggle("hidden");
-    //         if(this.innerText == "Comments"){
-    //             this.innerText = "Show Less";
-    //         }else{
-    //             this.innerText = "Comments"
-    //         }
-    //     })
-    // }
+
 
     //will handle button clicks
     //will expand all preexisting commments
@@ -64,6 +48,7 @@
 
         }
 
+
   
     
 
@@ -87,9 +72,10 @@
                     console.log(data); //ajax req by jquery will parse the string dat into json itslef
                     let newPost = newPostDom(data.data.post , data.data.userName);
                     $("#posts-display-wrapper").prepend(newPost );
-                    newCommentsBtn.push()
+                   
+                    deletePost($(' .delete-post-btn-link' , newPost));
                    expandCommentNew($(`#btn-${data.data.post._id}`));
-                
+                    
                    
                 },
                 error: function(error){
@@ -117,7 +103,7 @@
                 <button class='comments-btn new-posts-btn' post-id="${post._id}" id="btn-${post._id}" >Comments</button>
         
         
-                    <a href="/posts/destroy/${post._id}">
+                    <a href="/posts/destroy/${post._id}" class='delete-post-btn-link'>
                     <button class='delete-post-btn' >Delete</button>
                     </a>
                 
@@ -151,9 +137,61 @@
 
     }
 
+    let deletePost = function(deleteLink){
+
+     
+        deleteLink.click(function(event){
+          
+            //prevent default behaviour of the thing
+            event.preventDefault();
+
+            //now do the ajax request
+            $.ajax({
+                type:'get' ,
+                url: $(deleteLink).prop('href') ,//will give the href of the anchor tag
+                success : function(data){
+                    console.log(data);
+                    $(`#post-${data.data.post_id}`).remove();
+                },error : function(err){
+                    console.log(err.responseText);
+                }
+
+            })
+        
+        
+        });
+
+    }
+
+    let deletePost2 = function(deleteLink){
+
+     
+      
+            //now do the ajax request
+            $.ajax({
+                type:'get' ,
+                url: $(deleteLink).prop('href') ,//will give the href of the anchor tag
+                success : function(data){
+                    console.log(data);
+                    $(`#post-${data.data.post_id}`).remove();
+                },error : function(err){
+                    console.log(err.responseText);
+                }
+
+            })
+        
 
 
+    }
 
+
+    let postDeleteLinks = document.getElementsByClassName('delete-post-btn-link');
+    for(let i = 0 ; i < postDeleteLinks.length ; i++){
+        postDeleteLinks[i].addEventListener('click' , function(event){
+            event.preventDefault();
+            deletePost2( postDeleteLinks[i]);
+        });
+    }
 
     createPost();
    
