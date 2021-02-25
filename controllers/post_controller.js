@@ -117,6 +117,7 @@ module.exports.destroy = async function(req,res){
             await Comments.deleteMany({post:req.params.id})
 
             if(req.xhr){
+                req.flash('success' , "Post and associated comments deleted !");
                 return res.status(200).json({
                     data :{
                         post_id : req.params.id

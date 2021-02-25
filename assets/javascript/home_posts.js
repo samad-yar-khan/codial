@@ -1,7 +1,9 @@
 {
 
 
+    //*****INTERACTIVITY*******//
 
+    /*COMMENT SECTION*/
     //will handle button clicks
     //will expand all preexisting commments
     let expandComment = function(commentBtn){
@@ -49,8 +51,31 @@
         }
 
 
+    //*****NOTY FLASH MESSAGES *****//
+    let sucessFlash = function(message){
+        new Noty({
+            theme : 'mint' , 
+            text: message,
+            type: 'alert',
+            layout : "topCenter",
+            timeout : 1500
+            
+            }).show();
+    }
+
+    let errorFlash = function(message){
+        new Noty({
+            theme : 'mint' , 
+            text: "Post Created",
+            type: 'error',
+            layout : "topCenter",
+            timeout : 1500
+            
+            }).show();
+    }
   
     
+//********** AJAX CALLS*******//
 
     //methdo to create a post using ajax
     function createPost(){
@@ -72,14 +97,17 @@
                     console.log(data); //ajax req by jquery will parse the string dat into json itslef
                     let newPost = newPostDom(data.data.post , data.data.userName);
                     $("#posts-display-wrapper").prepend(newPost );
-                   
+                    //adding this function to delete post fucn to it can be deleted usin ajax
                     deletePost($(' .delete-post-btn-link' , newPost));
-                   expandCommentNew($(`#btn-${data.data.post._id}`));
-                    
+                    //this will enable the comment section to be dynamic
+                    expandCommentNew($(`#btn-${data.data.post._id}`));
+                    //shows flash message
+                    sucessFlash("Post Created !");
                    
                 },
                 error: function(error){
                     console.log(error.responseText);
+                    errorFlash(err.responseText);
                 }
             })
 
@@ -152,8 +180,10 @@
                 success : function(data){
                     console.log(data);
                     $(`#post-${data.data.post_id}`).remove();
+                    sucessFlash("Post and Associated Comments Deleted");
                 },error : function(err){
                     console.log(err.responseText);
+                    errorFlash(err.responseText);
                 }
 
             })
@@ -173,8 +203,10 @@
                 url: $(deleteLink).prop('href') ,//will give the href of the anchor tag
                 success : function(data){
                     console.log(data);
-                    $(`#post-${data.data.post_id}`).remove();
+                    $(`#post-${data.data.post_id}`).remove(); //cout<<"post-"<<var
+                    sucessFlash("Post and Associated Comments Deleted")
                 },error : function(err){
+                    errorFlash(err.responseText);
                     console.log(err.responseText);
                 }
 
@@ -191,6 +223,7 @@
             event.preventDefault();
             deletePost2( postDeleteLinks[i]);
         });
+        // deletePost( postDeleteLinks[i] );
     }
 
     createPost();
