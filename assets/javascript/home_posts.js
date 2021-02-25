@@ -9,7 +9,7 @@
     let expandComment = function(commentBtn){
         commentBtn.addEventListener('click' , function(){
           
-            console.log(this.getAttribute("post-id"))
+            // console.log(this.getAttribute("post-id"))
             var commentId = this.getAttribute("post-id");
             var temp = "comment-section-";
             commentId = temp+commentId;
@@ -28,7 +28,7 @@
         commentBtn.click(function(event){
             event.preventDefault();
             event.stopPropagation();
-            console.log(this.getAttribute("post-id"))
+            // console.log(this.getAttribute("post-id"))
             var commentId = this.getAttribute("post-id");
             var temp = "comment-section-";
             commentId = temp+commentId;
@@ -43,7 +43,7 @@
     }
 
         let commentDisplayBtns = $('.comments-btn');
-        console.log(commentDisplayBtns);
+        // console.log(commentDisplayBtns);
         for(let i = 0 ; i<commentDisplayBtns.length  ; i++){
 
             expandComment(commentDisplayBtns[i]);
@@ -82,7 +82,7 @@
 
         //we get the form  and prevent the defualt behavior off its submit button
         var newPostForm = $('#form-posts');
-        console.log(newPostForm);
+        // console.log(newPostForm);
         newPostForm.submit(function(defaultEvent){
             // console.log(defaultEvent);
 
@@ -94,11 +94,13 @@
                 data: newPostForm.serialize(), //this converts the foem data into json
                 success : function(data){
                     //data recooved from the api call
-                    console.log(data); //ajax req by jquery will parse the string dat into json itslef
+                    // console.log(data); //ajax req by jquery will parse the string dat into json itslef
                     let newPost = newPostDom(data.data.post , data.data.userName);
                     $("#posts-display-wrapper").prepend(newPost );
                     //adding this function to delete post fucn to it can be deleted usin ajax
                     deletePost($(' .delete-post-btn-link' , newPost));
+
+                    createComment($('.comment-form', newPost));
                     //this will enable the comment section to be dynamic
                     expandCommentNew($(`#btn-${data.data.post._id}`));
                     //shows flash message
@@ -178,7 +180,7 @@
                 type:'get' ,
                 url: $(deleteLink).prop('href') ,//will give the href of the anchor tag
                 success : function(data){
-                    console.log(data);
+                    // console.log(data);
                     $(`#post-${data.data.post_id}`).remove();
                     sucessFlash("Post and Associated Comments Deleted");
                 },error : function(err){
@@ -202,7 +204,7 @@
                 type:'get' ,
                 url: $(deleteLink).prop('href') ,//will give the href of the anchor tag
                 success : function(data){
-                    console.log(data);
+                    // console.log(data);
                     $(`#post-${data.data.post_id}`).remove(); //cout<<"post-"<<var
                     sucessFlash("Post and Associated Comments Deleted")
                 },error : function(err){
@@ -245,10 +247,14 @@
                     data : $(newCommentForms[i]).serialize(),
                     success : function(data){
                         console.log(data);
-                        let newComment = newCommentDom(data.data.comment , data.data.post);
-                        $(`#post-comments-${data.data.post._id}`).prepend(newComment);
+                        // let newComment = newCommentDom(data.data.comment , data.data.post);
+                        // $(`#post-comments-${data.data.post._id}`).prepend(newComment);
+                        // deleteComment($('.comments-delete-btn-link' , newComment));
+                        sucessFlash(data.message);
+                    
                     },
                     error : function(err){
+                        errorFlash(err.responseText);
                         console.log(err);
                     }
 
@@ -261,7 +267,7 @@
 
     function newCommentDom(comment , post){
         return $(`
-        <li>
+        <li id=${comment._id}>
         <h4>
             ${comment.user.name}
         </h4>
@@ -269,12 +275,43 @@
             ${comment.content}
         </p>
       
-        <a href="/comments/destroy/?commentId=${comment.id}&postAuthor=${post.user.id}" class="comments-delete-btn-link">
+        <a href="/comments/destroy/?commentId=${comment._id}&postAuthor=${post.user}" class="comments-delete-btn-link">
             <button class="comments-delete-btn">Delete</button>
         </a>
      
     </li>
         `)
+    }
+
+    function deleteComment(commentDeleteLink){ //by link we mean anchor tag
+
+        commentDeleteLink.click(function(defaultEvent){
+            defaultEvent.preventDefault();
+
+            $.ajax({
+
+                method : 'GET'  ,
+                url :  $(commentDeleteLink).prop('href'),
+                success : function(data){
+                    $(`#${data.data.commentId}`).remove();
+                    sucessFlash(data.message);
+                },
+                error : function (err){
+                    errorFlash(err.responseText);
+                }
+
+
+            })
+
+
+        })
+
+    }
+
+    let allCommentDeleteLinks = $('.comments-delete-btn-link');
+
+    for(commentLinks of allCommentDeleteLinks){
+        deleteComment($(commentLinks));
     }
 
     createPost();

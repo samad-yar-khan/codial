@@ -105,7 +105,7 @@ module.exports.create = async function( req , res ){
                         comment  : comment, 
                         post : post
                     },
-                    message :"Comment Created !"
+                    message :"Comment Posted !"
                 });
             }
 
@@ -141,7 +141,19 @@ module.exports.destroy = async function(req,res){
                 comment.remove();
 
                 //delete the comments if from the pposts comment array
-                await Post.findByIdAndUpdate(postId ,{ $pull: {comments : commentId}});            
+                await Post.findByIdAndUpdate(postId ,{ $pull: {comments : commentId}});         
+                
+                if(req.xhr){
+
+                    return res.status(200).json({
+
+                        data :{
+                            commentId : commentId
+                        },
+                        message : "Comment Deleted !"
+                    })
+
+                }
             }
         }
 
