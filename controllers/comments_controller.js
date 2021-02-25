@@ -99,6 +99,16 @@ module.exports.create = async function( req , res ){
             post.comments.push(comment); //this by default  will just push our comments id to the comment array of our post
             post.save(); //savve must be called after each updation 
 
+            if(req.xhr){
+                return res.status(200).json({
+                    data : {
+                        comment  : comment, 
+                        post : post
+                    },
+                    message :"Comment Created !"
+                });
+            }
+
         }
         
         req.flash('success' , "Comment Created !")

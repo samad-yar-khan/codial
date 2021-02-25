@@ -82,7 +82,7 @@
 
         //we get the form  and prevent the defualt behavior off its submit button
         var newPostForm = $('#form-posts');
-
+        console.log(newPostForm);
         newPostForm.submit(function(defaultEvent){
             // console.log(defaultEvent);
 
@@ -226,7 +226,58 @@
         // deletePost( postDeleteLinks[i] );
     }
 
+    /************* COMMENTS ************/
+
+    
+    function createComment(){
+        let newCommentForms = $(".comment-form");
+
+
+        for(let i = 0 ; i < newCommentForms.length ; i++){
+
+            $(newCommentForms[i]).submit(function(eventhere){
+                eventhere.preventDefault();
+
+                $.ajax({
+
+                    type : 'POST' ,
+                    url : "/comments/create" ,
+                    data : $(newCommentForms[i]).serialize(),
+                    success : function(data){
+                        console.log(data);
+                        let newComment = newCommentDom(data.data.comment , data.data.post);
+                        $(`#post-comments-${data.data.post._id}`).prepend(newComment);
+                    },
+                    error : function(err){
+                        console.log(err);
+                    }
+
+                });
+
+            })
+        }
+
+    }
+
+    function newCommentDom(comment , post){
+        return $(`
+        <li>
+        <h4>
+            ${comment.user.name}
+        </h4>
+        <p class="comments-content">
+            ${comment.content}
+        </p>
+      
+        <a href="/comments/destroy/?commentId=${comment.id}&postAuthor=${post.user.id}" class="comments-delete-btn-link">
+            <button class="comments-delete-btn">Delete</button>
+        </a>
+     
+    </li>
+        `)
+    }
+
     createPost();
-   
+    createComment();
 
 }

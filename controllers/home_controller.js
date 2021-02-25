@@ -59,10 +59,11 @@ module.exports.home = async function(req ,res){
             .populate('user')
             .populate({ //prepolate comments aswelas the name user of each user bby nestiing
                 path : 'comments',
+                options :  { sort: { createdAt: -1 } },
                 populate : {
                     path: 'user'
                 }
-            });
+            })
             //now our server wiill wiat for the above req to process and proceed fuerther if there are no error 
             //if there are errors then they will be sent to catch
 
