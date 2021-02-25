@@ -55,6 +55,7 @@ module.exports.home = async function(req ,res){
     try {
             //first asyc req to find and populate the post aswell as the  nested comments
             let posts = await Post.find({})
+            .sort('-createdAt')
             .populate('user')
             .populate({ //prepolate comments aswelas the name user of each user bby nestiing
                 path : 'comments',
