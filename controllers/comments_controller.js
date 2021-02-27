@@ -107,7 +107,8 @@ module.exports.create = async function( req , res ){
                         commentData :{
                             Content : comment.content,
                             User : req.user.name,
-                            Id : comment._id },
+                            Id : comment._id 
+                        },
                         post : post
                     },
                     message :"Comment Posted !"
@@ -121,8 +122,8 @@ module.exports.create = async function( req , res ){
         
       
     } catch (err) {
-        req.flash('error' , "err")
-        return res.redirect('back');
+       console.log(err);
+        // return res.redirect('back');
     }
     //before adding a comment check if the post on which we are trying to add the coments evven exitss or not 
 
