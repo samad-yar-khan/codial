@@ -100,19 +100,26 @@ module.exports.create = async function( req , res ){
             post.save(); //savve must be called after each updation 
 
             if(req.xhr){
+                
+                console.log("XHR");
                 return res.status(200).json({
                     data : {
-                        comment  : comment, 
+                        commentData :{
+                            Content : comment.content,
+                            User : req.user.name,
+                            Id : comment._id },
                         post : post
                     },
                     message :"Comment Posted !"
                 });
+            }else{
+                req.flash('success' , "Comment Created !")
+                return res.redirect('/');
             }
 
         }
         
-        req.flash('success' , "Comment Created !")
-        return res.redirect('/');
+      
     } catch (err) {
         req.flash('error' , "err")
         return res.redirect('back');
@@ -161,7 +168,10 @@ module.exports.destroy = async function(req,res){
         return res.redirect('back');
 
     } catch (err) {
+    
         req.flash('error' , err )
-        return res.redirect('back');    }
+        return res.redirect('back');  
+      
+    }
 
 }

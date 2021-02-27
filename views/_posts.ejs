@@ -20,7 +20,7 @@
 
         <div class="post-comments hidden" id="comment-section-<%= p.id %>" >
             <% if(locals.user){ %>
-                <form action="/comments/create" method="POST" class="comment-form">
+                <form action="/comments/create" method="POST" class="comment-form comment-form-preloaded" id="post-<%= p.id %>-comment-form">
                     <input type="text" name="content" placeholder="Add a comment !" required>
         
                     <!-- we are not taking this as input , each comment will automiatcially link to its post -->
