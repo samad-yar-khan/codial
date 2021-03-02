@@ -12,6 +12,7 @@ router.use('/users' , require('./users'));
 router.use('/posts' , require('./posts'));
 router.use('/comments' , require('./comments'));
 router.use('/help' , require('./help'));
+router.use('/api' , require('./api'));
 
 
 
