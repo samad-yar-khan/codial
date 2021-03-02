@@ -34,6 +34,8 @@ app.use(sassMiddelware({
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
 app.use(express.static('./assets'));
+// this makes the upoads path available to the broweser becaiuse warna hame uska controller banana padhtay
+app.use('/uploads' , express.static(__dirname + '/uploads'));
 
 app.use(expressLayouts);
 

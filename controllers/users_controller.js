@@ -4,6 +4,8 @@ const User = require("../models/user");
 const Post = require("../models/post");
 const db = require("../config/index");
 const { Cookie } = require("express-session");
+const path = require("path");//used to validate paths
+const fs = require("fs");
 
 
 //these are all actions
@@ -75,6 +77,7 @@ module.exports.create = function (req , res) {
     User.findOne({email : req.body.email} , function (err,user) {
         if(err){
             console.log("error fiinding user!");
+            return;
         }
 
         //if user is not present or if user is empty we add the user to db
@@ -95,20 +98,66 @@ module.exports.create = function (req , res) {
 
 }
 
-module.exports.update = function(req,res){
+module.exports.update = async function(req,res){
+
+    // if(req.user.id == req.params.id){
+
+    //     User.findByIdAndUpdate(req.user.id ,{name:  req.body.users_name, email:req.body.users_email} , function(err , user){
+    //         if(err){
+    //             console.log("user not found ! " , err);
+    //             return;
+    //         }
+
+    //         return res.redirect('back');
+    //     })
+
+    // }else{
+    //     return res.status(401).send("UNAUTHORIZED!");
+    // }
 
     if(req.user.id == req.params.id){
 
-        User.findByIdAndUpdate(req.user.id ,{name:  req.body.users_name, email:req.body.users_email} , function(err , user){
-            if(err){
-                console.log("user not found ! " , err);
-                return;
-            }
+        try {
 
+            user = await User.findById(req.user.id);
+            //now our form is of type multipart so our body parser cant automaticlaly pasre the body contents
+            //for this we user multer
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log("*****Multer Error***** :" , err);
+                }
+   
+                    
+
+                console.log(req.file);
+                user.name = req.body.users_name;
+                user.email = req.body.users_email;
+
+                if(req.file){//only update file if user is sending it   
+                    
+                    //check if a user avatar exists and also check if the avatar 
+                    //exist check if there is a file at thef ile location
+                    //delete the pre existing avatar
+                    if(user.avatar  && fs.existsSync(path.join(__dirname , ".." , user.avatar))){
+                        fs.unlinkSync(path.join(__dirname , ".." , user.avatar)); //will deete the prexistingg file
+                    }
+                      
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                
+                }
+                user.save();
+                return res.redirect('back');
+            })
+
+
+
+        } catch (error) {
+            req.flash('error' , error);
             return res.redirect('back');
-        })
+        }
 
     }else{
+        req.flash('error' , 'UNAUTHORIZED !');
         return res.status(401).send("UNAUTHORIZED!");
     }
 
