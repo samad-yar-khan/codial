@@ -16,6 +16,7 @@ const customMiddleware = require('./config/middleware');//has flash middle ware 
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
+const passportJWT = require('./config/passport_jwt_strategy');
 
 
 //connect-mongo to store cookies even after server restarts
