@@ -19,6 +19,8 @@ passport.use( new googleStrategy({ // first arg. is  the options
         //firt we need to finf this user in our own db
         //user has multiple emalis hence we hence we choose the frst email
         // console.log(profile);
+        //console.log(accessToken)  // will give a definit value and cna be used repeatedly to acess the users info
+        //console.log(refershToken) //this will give null as , we must set up and ask for a refresh token , this should be tehre so figure ths out
         User.findOne({email:profile.emails[0].value} ).exec(function(err , user){
             if(err){
                 console.log("error in google strategy - passport : " , err);
