@@ -24,6 +24,13 @@ router.post('/create-session' , passport.authenticate(
 router.get('/sign-out' , usersController.destroySession);
 
 
+//google auth
+//scope is the persmission we need to take or the datd we need frrom google 
+//the below route is given to us by passport and it is what takkes us to google directly
+router.get('/auth/google' , passport.authenticate('google' , {scope : ['profile' , 'email'] })); 
+router.get('/auth/google/callback' ,passport.authenticate('google' , {failureRedirect : '/users/sign-in'}) , usersController.createSession) // this is the url where we receive the data 
+
+
 module.exports = router;
 
 
