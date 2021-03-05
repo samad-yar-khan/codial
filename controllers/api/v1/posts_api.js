@@ -26,7 +26,7 @@ module.exports.index = async function(req, res){
 
 module.exports.destroy = async function(req,res){
     
-
+    
     try {
 
         
