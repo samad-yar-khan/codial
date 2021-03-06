@@ -44,11 +44,11 @@ passport.use( new googleStrategy({ // first arg. is  the options
                     }
 
                     return done(null , user);
-                })
+                });
 
 
             }
-        })
+        });
     }
     ));
 
