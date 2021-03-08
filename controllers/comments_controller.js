@@ -1,6 +1,7 @@
 const Comments = require('../models/comment');
 const User = require('../models/user');
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/comments_mailer');
 
 // module.exports.create = function( req , res ){
 
@@ -98,7 +99,8 @@ module.exports.create = async function( req , res ){
                 //now we need to add this comments id to post
             post.comments.push(comment); //this by default  will just push our comments id to the comment array of our post
             post.save(); //savve must be called after each updation 
-
+            let newComment = await comment.populate('user' , 'name email').execPopulate();
+            commentsMailer.newComment(newComment);
             if(req.xhr){
                 
                 console.log("XHR");
