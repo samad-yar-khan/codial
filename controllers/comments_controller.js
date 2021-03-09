@@ -92,7 +92,7 @@ module.exports.create = async function( req , res ){
             let comment = await Comments.create({
                 content : req.body.content,
                 //yaha hamne seede user and post dala because wo type id hai to khud usse id extract karlega
-                user : req.user, //this was sttored ij the locals by passport
+                user : req.user._id, //this was sttored ij the locals by passport
                 post : post
             });
 
