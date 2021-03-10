@@ -2,6 +2,8 @@ const Comments = require('../models/comment');
 const User = require('../models/user');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comments_email_worker');
 
 // module.exports.create = function( req , res ){
 
@@ -100,7 +102,9 @@ module.exports.create = async function( req , res ){
             post.comments.push(comment); //this by default  will just push our comments id to the comment array of our post
             post.save(); //savve must be called after each updation 
             let newComment = await comment.populate('user' , 'name email').execPopulate();
-            commentsMailer.newComment(newComment);
+            //earlier we were sending the mail directly which increases the load on the server due to parellel procesing
+            //but now we send mails using a worker and job queue 
+            // commentsMailer.newComment(newComment);
             if(req.xhr){
                 
                 console.log("XHR");
