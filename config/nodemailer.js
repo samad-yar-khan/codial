@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
     secure : 'false' ,
     auth : {
         user : "samad.ic19@nsut.ac.in" ,
-        pass : "#Skateboard1"
+        pass : "pass"
     }
 
 });
