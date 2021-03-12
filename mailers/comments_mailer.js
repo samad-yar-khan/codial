@@ -2,7 +2,7 @@ const nodeMailer = require('../config/nodemailer');
 
 exports.newComment = (comment)=>{
 
-    console.log('inside new comment mailer');
+    
     let htmlString = nodeMailer.renderTemplate({comment:comment} , '/comments/new_comment.ejs')
 
     nodeMailer.transporter.sendMail({
