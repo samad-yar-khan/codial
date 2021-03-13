@@ -3,7 +3,8 @@ const crypto = require('crypto'); //pre isntalled in node now
 const ResetPassToken = require('../models/reset_pass_token');
 const nodemailer = require('../config/nodemailer');
 const resetPassMailer = require('../mailers/reset_password_mailer');
-
+const queue = require('../config/kue');
+const resetPassWorker = require('../workers/reset_password_email_worker');
 module.exports.forgotPass = function(req , res){
 
     return res.render('forgot_pass' ,{
@@ -34,7 +35,17 @@ module.exports.verifyEmail = async function(req , res){
             } );
 
             const myToken = await token.populate('user' , 'name email').execPopulate() ;   
-            resetPassMailer.passResetToken(token);  
+            // resetPassMailer.passResetToken(myToken);  
+            let job = queue.create('resetPasswordEmail' , myToken ).priority('medium').save(function(err){
+                if(err){
+                    console.log("error in sedning reset pass mail to queue "  ,err);
+                    return;
+                }
+
+                console.log('Job Enqueued' , job.id);
+            });
+
+
             req.flash('success' , 'Password Reset Link sent !!');
             return res.redirect('back');
         
