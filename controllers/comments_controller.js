@@ -107,7 +107,7 @@ module.exports.create = async function( req , res ){
             // commentsMailer.newComment(newComment);
 
             //inside a queueu create a new job and if the queue doesnt exist , then , first the queue is cretaed and then the jo is pushed
-            let job = queue.create('emails' , newComment).save(function(err){
+            let job = queue.create('emails' , newComment).priority('low').save(function(err){
                 if(err){
                     console.log("error in sedning comment mail to queue "  ,err);
                     return;
