@@ -9,7 +9,7 @@ module.exports.forgotPass = function(req , res){
     return res.render('forgot_pass' ,{
 
         title : "Forgot Password" ,
-        heading : 'Reset Password'
+        heading : 'Forgot Password'
 
     })
 
@@ -35,7 +35,7 @@ module.exports.verifyEmail = async function(req , res){
 
             const myToken = await token.populate('user' , 'name email').execPopulate() ;   
             resetPassMailer.passResetToken(token);  
-            req.flash('sucess' , 'Password Reset Link sent !!');
+            req.flash('success' , 'Password Reset Link sent !!');
             return res.redirect('back');
         
         }else{
@@ -49,4 +49,59 @@ module.exports.verifyEmail = async function(req , res){
         return res.redirect('back');
     }
   
+}
+
+module.exports.resetPass=async function(req, res){
+
+    let token = req.query.accessToken;
+
+    let accessToken = await ResetPassToken.findOne({'accessToken':token});
+    if(accessToken && accessToken.isValid){
+        return res.render('reset_pass' , {
+
+            title:"RESET PASSWORD",
+            heading:"RESET PASSWORD",
+            accessToken:token,
+        });
+    }else{
+        req.flash('error' , "Unauthorized !");
+        return res.redirect('back');
+    }
+
+    
+
+}
+
+module.exports.resetPassFinal= async function(req, res){
+
+    if(req.body.password != req.body.confirmPassword){
+        req.flash('error' , "PASSWORDS DONT MATCH");
+        return res.redirect('back');
+    }
+
+    try {
+        let token = req.body.accessToken;
+        let accessToken = await ResetPassToken.findOne({'accessToken':token});
+
+        if(accessToken && accessToken.isValid){
+            let user =await User.findById(accessToken.user);
+            user.password = req.body.password;
+            await user.save();
+
+            accessToken.remove();
+
+            req.flash('success' , "Password Reset Successfull!");
+            return res.redirect('/users/sign-in');
+        }else{
+            req.flash('error' , "Unauthorized !");
+           return res.redirect('back');
+        }
+
+    } catch (err) {
+        req.flash('error' ,"error in resetting password");
+        console.log("error in resetting password", err)
+           return res.redirect('back');
+    }
+ 
+    
 }
