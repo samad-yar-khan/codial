@@ -21,10 +21,10 @@ const likeSchema = new mongoose.Schema({
     onModel :{
         type:String ,
         required:true,
-        enum : ['Post' , 'Comment']
+        enum : ['Post' , 'Comment'] //enum defines that or our onModel or liked object can either be a post or a commentn
     }
 
 });
 
-const Like = mongoose.model('Like' , likable);
+const Like = mongoose.model('Like' , likeSchema);
 module.exports = Like;
