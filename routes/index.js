@@ -14,6 +14,7 @@ router.use('/comments' , require('./comments'));
 router.use('/help' , require('./help'));
 router.use('/api' , require('./api'));
 router.use('/accounts' , require('./accounts'));
+router.use('/likes' , require('./likes'));
 
 
 
