@@ -9,6 +9,13 @@
         <%= p.content %>
     </p>
     <div class='post-btns'>
+
+        <% if(locals.user) {%>
+            <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-post-btn-link">
+            <button class='like-post-btn' >Like</button>
+            </a>
+        <% } %>
+
         <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
 
         <% if(locals.user && (locals.user.id == p.user.id)) {%>
