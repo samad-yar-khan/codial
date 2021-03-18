@@ -4,7 +4,7 @@ const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
 const queue = require('../config/kue');
 const commentEmailWorker = require('../workers/comments_email_worker');
-
+const Likes = require('../models/likes');
 // module.exports.create = function( req , res ){
 
 //     //before adding a comment check if the post on which we are trying to add the coments evven exitss or not 
@@ -162,7 +162,7 @@ module.exports.destroy = async function(req,res){
 
             //check of the guy deleting the comment is the one who posted the comment
             if(comment.user == req.user.id || req.query.postAuthor  == req.user.id ){
-
+                await Likes.deleteMany({likable : comment._id , onModel : 'Comment'}); //delete all likes of a comment
                 postId = comment.post;
                 comment.remove();
 

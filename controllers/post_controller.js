@@ -3,6 +3,7 @@ const User = require("../models/user");
 const Post = require("../models/post");
 const Comments = require('../models/comment');
 const db = require("../config/index");
+const Likes = require('../models/likes');
 
 // PREVIOuS MEDTHOD
 
@@ -110,11 +111,23 @@ module.exports.destroy = async function(req,res){
         //we havent populated user yet , so it must be the user id
         if(post.user == req.user.id){
 
+            //delete the likes associated with the post and the comments of that post
+            await Likes.deleteMany({likable : post._id , onModel : 'Post'});
+            //this will deete all likes asscciated with the commets of the post
+            for(let i = 0 ; i < post.comments.length ; i++){
+
+                await  Likes.deleteOne({likable : post.comments[i]._id , onModel : 'Comment'})
+
+            }
+            // await Likes.deleteMany({_id: {$in: post.comments}});
+
             //deleted the post 
             post.remove();
             //now go to the db and dlete aall the comments from that post 
             //the id of the post is still there in the param
-            await Comments.deleteMany({post:req.params.id})
+
+
+            await Comments.deleteMany({post:req.params.id});
 
             if(req.xhr){
                 req.flash('success' , "Post and associated comments deleted !");
