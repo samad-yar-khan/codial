@@ -61,8 +61,10 @@ module.exports.home = async function(req ,res){
                 path : 'comments',
                 options :  { sort: { createdAt: -1 } },
                 populate : {
-                    path: 'user'
-                }
+                    path: 'user likes'
+                },
+
+               
             }).populate('likes');
             //now our server wiill wiat for the above req to process and proceed fuerther if there are no error 
             //if there are errors then they will be sent to catch

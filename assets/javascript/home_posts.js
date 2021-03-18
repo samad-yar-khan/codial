@@ -113,7 +113,11 @@
                 ${post.content}
             </p>
             <div class='post-btns'>
-                <button class='comments-btn new-posts-btn' post-id="${post._id}" id="btn-${post._id}" >Comments</button>
+            
+                    <a href="/likes/toggle/?id=${post._id}&type=Post" class="like-btn-link">
+                        <button class='like-post-btn' >Like</button>
+                    </a>
+                <button class='comments-btn new-posts-btn ' post-id="${post._id}" id="btn-${post._id}" >Show Less</button>
         
         
                     <a href="/posts/destroy/${post._id}" class='delete-post-btn-link'>

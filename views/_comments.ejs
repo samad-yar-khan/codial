@@ -4,12 +4,22 @@
     <h4>
         <%= comment.user.name %>
     </h4>
+    
     <p class="comments-content">
         <%= comment.content %>
     </p>
+    <b style="color:white">
+        <%=p.likes.length%>
+    </b>
+    <% if(locals.user) {%>
+        <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-btn-link">
+        <button class='like-post-btn' >Like</button>
+        </a>
+    <% } %>
     <% if(locals.user && ((locals.user.id == comment.user.id) || (locals.user.id == p.user.id))){ %>
     <a href="/comments/destroy/?commentId=<%= comment.id %>&postAuthor=<%= p.user.id  %>" class="comments-delete-btn-link">
         <button class="comments-delete-btn">Delete</button>
     </a>
+
     <% } %>
 </li>

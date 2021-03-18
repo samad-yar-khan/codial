@@ -62,7 +62,7 @@
       .post-comments .post-comments-list ul li .comments-delete-btn {
         height: 20px;
         width: fit-content;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         background-color: #020024;
@@ -75,6 +75,25 @@
         .post-comments .post-comments-list ul li .comments-delete-btn:hover {
           cursor: pointer; }
         .post-comments .post-comments-list ul li .comments-delete-btn:active {
+          outline: none;
+          transform: scale(0.95);
+          border: none; }
+      .post-comments .post-comments-list ul li .like-btn-link button {
+        height: 20px;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.076);
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px;
+        border-radius: 5px;
+        outline: none;
+        border: none; }
+        .post-comments .post-comments-list ul li .like-btn-link button:hover {
+          cursor: pointer; }
+        .post-comments .post-comments-list ul li .like-btn-link button:active {
           outline: none;
           transform: scale(0.95);
           border: none; }

@@ -9,9 +9,11 @@
         <%= p.content %>
     </p>
     <div class='post-btns'>
-
+        <b style="color:white">
+            <%=p.likes.length%>
+        </b>
         <% if(locals.user) {%>
-            <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-post-btn-link">
+            <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-btn-link">
             <button class='like-post-btn' >Like</button>
             </a>
         <% } %>
