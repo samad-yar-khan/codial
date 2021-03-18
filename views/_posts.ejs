@@ -9,14 +9,14 @@
         <%= p.content %>
     </p>
     <div class='post-btns'>
-        <b style="color:white">
-            <%=p.likes.length%>
-        </b>
+       
         <% if(locals.user) {%>
-            <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-btn-link">
-            <button class='like-post-btn' >Like</button>
+            <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-btn-link" data-likes="<%= p.likes.length %>">
+            <button class='like-btn' ><%=p.likes.length%> &nbsp <i class="fas fa-heart"></i></button>
             </a>
-        <% } %>
+        <% }else{ %>
+            <button class='like-btn' ><%=p.likes.length%> &nbsp <i class="fas fa-heart"></i></button>
+        <%  } %>
 
         <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
 

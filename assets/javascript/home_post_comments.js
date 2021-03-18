@@ -90,6 +90,10 @@ class PostComments{
         <p class="comments-content">
             ${comment.Content}
         </p>
+
+        <a href="/likes/toggle/?id=${comment.Id}&type=Comment" class="like-btn-link" data-likes="${comment.likes.length}">
+        <button class='like-btn' > ${comment.likes.length} &nbsp; <i class="fas fa-heart"></i></button>
+        </a>
       
         <a href="/comments/destroy/?commentId=${comment.Id}&postAuthor=${post.user}" class="comments-delete-btn-link">
             <button class="comments-delete-btn">Delete</button>

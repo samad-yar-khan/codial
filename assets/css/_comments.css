@@ -78,7 +78,7 @@
           outline: none;
           transform: scale(0.95);
           border: none; }
-      .post-comments .post-comments-list ul li .like-btn-link button {
+      .post-comments .post-comments-list ul li button.like-btn {
         height: 20px;
         width: fit-content;
         display: inline-flex;
@@ -91,9 +91,9 @@
         border-radius: 5px;
         outline: none;
         border: none; }
-        .post-comments .post-comments-list ul li .like-btn-link button:hover {
+        .post-comments .post-comments-list ul li button.like-btn:hover {
           cursor: pointer; }
-        .post-comments .post-comments-list ul li .like-btn-link button:active {
+        .post-comments .post-comments-list ul li button.like-btn:active {
           outline: none;
           transform: scale(0.95);
           border: none; }

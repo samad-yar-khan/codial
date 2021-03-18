@@ -121,9 +121,9 @@
                      }
         
                 }
-                .like-btn-link{
+                button.like-btn{
                 
-                    button {
+                    
                         height: 20px;
                         width:fit-content;
                         display: inline-flex;
@@ -146,7 +146,7 @@
                             transform: scale(0.95);
                             border: none;
                         }
-                    }
+                   
                 }
             }
 

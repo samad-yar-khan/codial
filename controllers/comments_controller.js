@@ -124,7 +124,8 @@ module.exports.create = async function( req , res ){
                         commentData :{
                             Content : comment.content,
                             User : req.user.name,
-                            Id : comment._id 
+                            Id : comment._id ,
+                            likes : comment.likes
                         },
                         post : post
                     },

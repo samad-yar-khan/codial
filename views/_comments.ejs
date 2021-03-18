@@ -8,13 +8,15 @@
     <p class="comments-content">
         <%= comment.content %>
     </p>
-    <b style="color:white">
-        <%=p.likes.length%>
-    </b>
+    
     <% if(locals.user) {%>
-        <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-btn-link">
-        <button class='like-post-btn' >Like</button>
+        <a href="/likes/toggle/?id=<%= comment.id %>&type=Comment" class="like-btn-link" data-likes="<%= comment.likes.length %>">
+        <button class='like-btn' > <%=comment.likes.length%> &nbsp; <i class="fas fa-heart"></i></button>
         </a>
+    <% } else{ %>
+       
+        <button class='like-btn' > <%=comment.likes.length%> &nbsp; <i class="fas fa-heart"></i></button>
+       
     <% } %>
     <% if(locals.user && ((locals.user.id == comment.user.id) || (locals.user.id == p.user.id))){ %>
     <a href="/comments/destroy/?commentId=<%= comment.id %>&postAuthor=<%= p.user.id  %>" class="comments-delete-btn-link">
