@@ -20,7 +20,7 @@ module.exports.toggleLike = async function(req,res){
 
         if(type == 'Post'){
             likable = await Post.findById(likableId).populate('likes');
-            console.log("its a post!")
+            console.log("its a post!");
         }else{
             likable = await Comments.findById(likableId).populate('likes');
         }
@@ -40,8 +40,8 @@ module.exports.toggleLike = async function(req,res){
 
             await existingLike.remove();
             deleted = true;
-            console.log("oof");
-            console.log(existingLike);
+            // console.log("oof");
+            // console.log(existingLike);
 
         }else{
 
@@ -56,17 +56,21 @@ module.exports.toggleLike = async function(req,res){
 
         }   
 
-        // return res.json(200 , {
-        //     message : "Request Sucessfull !" ,
-        //     data  : {
-        //         deleted : deleted
-        //     }
-        // })
-        return res.redirect('back')
+        return res.json(200 , {
+            message : "Request Sucessfull !" ,
+            data  : {
+                deleted : deleted ,
+                type : type,
+                likable : likableId
+            }
+        })
+        // return res.redirect('back')
 
     } catch (err) {
         console.log(err);
-        return res.redirect('back');
+        return res.json(500, {
+            message: 'Internal Server Error'
+        });
     }
 
 

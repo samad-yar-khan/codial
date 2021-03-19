@@ -11,7 +11,7 @@
     
     <% if(locals.user) {%>
         <a href="/likes/toggle/?id=<%= comment.id %>&type=Comment" class="like-btn-link" data-likes="<%= comment.likes.length %>">
-        <button class='like-btn' > <%=comment.likes.length%> &nbsp; <i class="fas fa-heart"></i></button>
+        <button class='like-btn' ><span id='like-count-<%= comment.id %>-Comment'><%=comment.likes.length%></span> &nbsp; <i class="fas fa-heart"></i></button>
         </a>
     <% } else{ %>
        

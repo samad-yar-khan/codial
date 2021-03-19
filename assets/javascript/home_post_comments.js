@@ -1,5 +1,6 @@
 
 
+
     //*****NOTY FLASH MESSAGES *****//
     let sucessFlash = function(message){
         new Noty({
@@ -70,6 +71,9 @@ class PostComments{
                     $(`#post-comments-${postId}`).prepend(newComment);
                     postSelf.deleteComment($('.comments-delete-btn-link' , newComment));
                     sucessFlash(data.message);
+                    new ToggleLike($(' .like-btn-link', newComment));//this means we find a like-btn-link inside of our new commnent
+
+                    
                 },
                 error : function(data){ 
                     errorFlash(data.message);
@@ -92,7 +96,7 @@ class PostComments{
         </p>
 
         <a href="/likes/toggle/?id=${comment.Id}&type=Comment" class="like-btn-link" data-likes="${comment.likes.length}">
-        <button class='like-btn' > ${comment.likes.length} &nbsp; <i class="fas fa-heart"></i></button>
+        <button class='like-btn' ><span id='like-count-${comment.Id}-Comment'> ${comment.likes.length}</span> &nbsp; <i class="fas fa-heart"></i></button>
         </a>
       
         <a href="/comments/destroy/?commentId=${comment.Id}&postAuthor=${post.user}" class="comments-delete-btn-link">

@@ -1,8 +1,0 @@
-{
-
-    let likeButtons  = document.getElementsByClassName('')
-
-
-
-
-}

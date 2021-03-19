@@ -88,6 +88,8 @@
                     expandComment($(`#btn-${data.data.post._id}`));
                     //shows flash message
                     sucessFlash("Post Created !");
+                    new ToggleLike($(' .like-btn-link', newPost));//bind the new like button of this post to this clas
+    
                    
                 },
                 error: function(error){
@@ -115,7 +117,7 @@
             <div class='post-btns'>
             
             <a href="/likes/toggle/?id=${post._id}&type=Post" class="like-btn-link" data-likes="${post.likes.length}">
-                <button class='like-post-btn' >${post.likes.length} &nbsp <i class="fas fa-heart"></i></button>
+                <button class='like-post-btn' ><span id="like-count-${post._id}-Post">${post.likes.length}</span> &nbsp <i class="fas fa-heart"></i></button>
             </a>
                 <button class='comments-btn new-posts-btn ' post-id="${post._id}" id="btn-${post._id}" >Show Less</button>
         

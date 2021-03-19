@@ -12,10 +12,10 @@
        
         <% if(locals.user) {%>
             <a href="/likes/toggle/?id=<%= p.id %>&type=Post" class="like-btn-link" data-likes="<%= p.likes.length %>">
-            <button class='like-btn' ><%=p.likes.length%> &nbsp <i class="fas fa-heart"></i></button>
+            <button class='like-btn' ><span id='like-count-<%= p.id %>-Post'><%=p.likes.length%></span> &nbsp <i class="fas fa-heart"></i></button>
             </a>
         <% }else{ %>
-            <button class='like-btn' ><%=p.likes.length%> &nbsp <i class="fas fa-heart"></i></button>
+            <button class='like-btn' ><span id='like-count-<%= p.id %>-Post'><%=p.likes.length%></span> <i class="fas fa-heart"></i></button>
         <%  } %>
 
         <button class='comments-btn' post-id="<%= p.id %>">Comments</button>
