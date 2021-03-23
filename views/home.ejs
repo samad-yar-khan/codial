@@ -45,20 +45,49 @@
 
                 
             </section> 
+            <% if (locals.user) { %>
 
-            <section id="user-friends">
-                <h2>
-                    FRIENDS
-                </h2>
+            <div class ="users-list-wrapper">
+                <section class="users-list">
+                    <h2>
+                        FRIENDS
+                    </h2>
+                
+                        <% for( friendship of myUser.friendships) {%>
 
-                <% for( User of all_users) {%>
+                            <% if(friendship.from_user.id == myUser.id) { %>
+                            <p>
 
-                    <p>
-                        <a href="users/profile/<%=User.id%>"><%= User.name %></a>
-                    </p>
+                                <a href="users/profile/<%=friendship.to_user._id%>"><%= friendship.to_user.name %> </a>
+                            </p>
+                            <% } else {%>
+                                <p>
+                                    <a href="users/profile/<%=friendship.from_user._id%>"><%= friendship.from_user.name %></a>
+                                
+                                </p>
+                            <%}%>
 
-                <%}%>
-            </section>
+                        <%}%>
+                
+                </section>
+                <% } %>
+
+                <section class="users-list">
+                    <h2>
+                        ALL USER
+                    </h2>
+
+                    <% for( User of all_users) {%>
+
+                        <p>
+                            <a href="users/profile/<%=User.id%>"><%= User.name %></a>
+                        </p>
+
+                    <%}%>
+                </section>
+            </div>
+
+            
 
    
         

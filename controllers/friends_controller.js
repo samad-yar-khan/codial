@@ -5,8 +5,8 @@ module.exports.toggleUser = async function(req , res){
 
     try {
 
-        let toggledUser = await User.findById(req.query.userId).populate('friendships');
-        let ourUser = await User.findById(req.query.userId).populate('friendships'); 
+        let toggledUser = await User.findById(req.query.userID).populate('friendships');
+        let ourUser = await User.findById(req.user._id).populate('friendships'); 
 
         //if there is a user who we wwish o be befrend 
         if(toggledUser){
@@ -21,11 +21,13 @@ module.exports.toggleUser = async function(req , res){
                 to_user :  req.user._id
             })
 
+            let friendshipStatus = false;
+
             if(friendship_op1){
 
                 //we remove the friedship from both of their arrays of frinds
                 await toggledUser.friendships.pull(friendship_op1._id);
-                await toggleUser.save();
+                await toggledUser.save();
                 await ourUser.friendships.pull(friendship_op1._id);
                 await ourUser.save();
                 await friendship_op1.remove();
@@ -34,7 +36,7 @@ module.exports.toggleUser = async function(req , res){
             }else if(friendship_op2){
 
                 await toggledUser.friendships.pull(friendship_op2._id);
-                await toggleUser.save();
+                await toggledUser.save();
                 await ourUser.friendships.pull(friendship_op2._id);
                 await ourUser.save();
                 await friendship_op2.remove();
@@ -46,25 +48,31 @@ module.exports.toggleUser = async function(req , res){
                     to_user :  req.query.userID
                 });
 
-                toggleUser.friendships.push(newFriendship);
-                ourUser.friendships.push(newFriendship);
+                toggledUser.friendships.push(newFriendship._id);
+                ourUser.friendships.push(newFriendship._id);
 
-                toggleUser.save();
+                toggledUser.save();
                 ourUser.save();
+                friendshipStatus = true;
 
 
             }
+            return res.json(200 , {
+                message : "Request Sucessfull !" ,
+                data  : {
+                   friendshipStatus : friendshipStatus
+                }
+            })
 
         }
-
-        req.flash('success' , 'Friend Updated !');
-        return res.redirect('back');;
+      
         
     } catch (err) {
-        
-        console.log("ERROR : " , err);
-        req.flash('error' , "Cant Add / Remove Friend !");
-        return res.redirect('back');;
+        console.log(err);
+        console.log("Error Toggling Fried")
+        return res.json(500, {
+            message: 'Internal Server Error'
+        });
     }
     
 

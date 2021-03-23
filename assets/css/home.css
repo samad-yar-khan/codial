@@ -66,24 +66,30 @@ main {
             outline: none;
             transform: scale(0.95);
             border: none; }
-    main #main-componets-wrapper #user-friends {
-      padding: 20px;
-      border: 4px solid #020024;
-      border-radius: 20px;
-      background-color: #020024;
-      height: 100%; }
-      main #main-componets-wrapper #user-friends h2 {
-        letter-spacing: 2px;
-        color: white; }
-      main #main-componets-wrapper #user-friends p {
-        color: white;
-        padding: 4px;
-        margin: 0; }
-        main #main-componets-wrapper #user-friends p a {
-          color: inherit;
-          text-decoration: none; }
-          main #main-componets-wrapper #user-friends p a:active, main #main-componets-wrapper #user-friends p a:visited, main #main-componets-wrapper #user-friends p a:link {
-            color: inherit; }
+    main #main-componets-wrapper .users-list-wrapper {
+      display: flex;
+      flex-direction: column; }
+      main #main-componets-wrapper .users-list-wrapper .users-list {
+        margin: 20px;
+        padding: 20px;
+        border: 4px solid #020024;
+        border-radius: 20px;
+        background-color: #020024;
+        height: fit-content;
+        max-height: 400px;
+        overflow-y: auto; }
+        main #main-componets-wrapper .users-list-wrapper .users-list h2 {
+          letter-spacing: 2px;
+          color: white; }
+        main #main-componets-wrapper .users-list-wrapper .users-list p {
+          color: white;
+          padding: 4px;
+          margin: 0; }
+          main #main-componets-wrapper .users-list-wrapper .users-list p a {
+            color: inherit;
+            text-decoration: none; }
+            main #main-componets-wrapper .users-list-wrapper .users-list p a:active, main #main-componets-wrapper .users-list-wrapper .users-list p a:visited, main #main-componets-wrapper .users-list-wrapper .users-list p a:link {
+              color: inherit; }
 
 .hidden {
   display: none; }

@@ -54,6 +54,7 @@ module.exports.home = async function(req ,res){
 
     try {
             //first asyc req to find and populate the post aswell as the  nested comments
+           
             let posts = await Post.find({})
             .sort('-createdAt')
             .populate('user')
@@ -65,11 +66,22 @@ module.exports.home = async function(req ,res){
                 },
 
                
-            }).populate('likes');
+            }).populate('likes')
+            
             //now our server wiill wiat for the above req to process and proceed fuerther if there are no error 
             //if there are errors then they will be sent to catch
 
             let users = await  User.find({});
+            let usersFriendships ;
+            
+            if(req.user){
+             usersFriendships = await User.findById(req.user._id).populate({ //prepolate comments aswelas the name user of each user bby nestiing
+                path : 'friendships',
+                options :  { sort: { createdAt: -1 } },
+                populate : {
+                    path: 'from_user to_user'
+                }})
+            }
              //now our server wiill wiat for the above req to process and proceed fuerther if there are no error 
             //if there are errors then they will be sent to catch
 
@@ -77,7 +89,8 @@ module.exports.home = async function(req ,res){
                 title:"home",
                 heading:"Welcome To Codial !",
                 PostList:posts,
-                all_users : users
+                all_users : users,
+                myUser : usersFriendships
             });
 
     } catch (error) {

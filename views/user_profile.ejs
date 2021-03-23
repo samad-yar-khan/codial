@@ -26,6 +26,20 @@
             <h3 id='user-email'>
                 <%= profile_user.email%>
             </h3>
+
+            <>
+
+            <a href="/friends/toggle/?userID=<%=profile_user.id%>" id="friend-toggle">
+                <button id="friend-toggle-button">
+                    <% if (isFriend) {%>
+                        <%= "Remove Friend" %>
+                    <% } else {%>
+                        <%= "Add Friend" %>
+                    <% } %>
+                </button>
+            </a>
         <%  }  %>
 
     </main>
+
+    <script type="text/javascript" src="/javascript/user_profile.js" ></script>

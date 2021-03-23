@@ -4,6 +4,6 @@ const passport = require('passport');
 
 const friendsController = require('../controllers/friends_controller');
 
-router.post('/toggle/' , passport.checkAuthentication ,friendsController.toggleUser); 
+router.get('/toggle/' , passport.checkAuthentication ,friendsController.toggleUser); 
 
 module.exports = router;
