@@ -16,7 +16,7 @@
 
                 clickEvent.preventDefault();
                 let self = this;
-                console.log("clicked !");
+                // console.log("clicked !");
 
                 $.ajax({
                     method : 'GET' ,
