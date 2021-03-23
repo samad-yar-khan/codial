@@ -22,7 +22,11 @@ const userSchema = mongoose.Schema({
     },
     avatar:{
         type :String 
-    }
+    },
+    friendships :[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref : 'Friendship'
+    }]
 },{
     timestamps:true //this is to  keep track of time at which  user is created and updated
 });

@@ -24,6 +24,8 @@ const likeSchema = new mongoose.Schema({
         enum : ['Post' , 'Comment'] //enum defines that or our onModel or liked object can either be a post or a commentn
     }
 
+} , {
+    timestamps:true
 });
 
 const Like = mongoose.model('Like' , likeSchema);
