@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Friendship = require('../models/friendship');
-let toggleUser = async function(req , res){
+
+module.exports.toggleUser = async function(req , res){
 
     try {
 
@@ -23,20 +24,20 @@ let toggleUser = async function(req , res){
             if(friendship_op1){
 
                 //we remove the friedship from both of their arrays of frinds
-                toggledUser.friendships.pull(friendship_op1._id);
-                toggleUser.save();
-                ourUser.friendships.pull(friendship_op1._id);
-                ourUser.save();
+                await toggledUser.friendships.pull(friendship_op1._id);
+                await toggleUser.save();
+                await ourUser.friendships.pull(friendship_op1._id);
+                await ourUser.save();
                 await friendship_op1.remove();
 
 
             }else if(friendship_op2){
 
-                toggledUser.friendships.pull(friendship_op2._id);
-                toggleUser.save();
-                ourUser.friendships.pull(friendship_op2._id);
-                 ourUser.save();
-                 await friendship_op2.remove();
+                await toggledUser.friendships.pull(friendship_op2._id);
+                await toggleUser.save();
+                await ourUser.friendships.pull(friendship_op2._id);
+                await ourUser.save();
+                await friendship_op2.remove();
 
             } else{
 
