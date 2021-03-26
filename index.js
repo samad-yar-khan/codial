@@ -23,6 +23,13 @@ const passportGoogle = require('./config/passport_google_oauth2_strategy');
 //connect-mongo to store cookies even after server restarts
 const MongoStore = require('connect-mongo')(session);//we need to pass the session as argument when we require the mongoconnect as we want to store the session cookies in data base
 
+
+//setup chat sever to be used with socket.io
+const chatServer = require('http').Server(app);
+const chatSocktes = require('./config/chat_socket').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log("chat sever listening on port ",5000);
+
 //before the veiws are rendered we need to setup the sass middlware so files are convverted to css
 app.use(sassMiddelware({
 
