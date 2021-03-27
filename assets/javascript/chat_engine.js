@@ -11,6 +11,24 @@ class chatEngine{
         }
     }
 
+    createMessagePill(data){
+
+        let senderMail = data.user_email;
+        let msg = data.msg
+        console.log("create");
+        let messageType = 'other-message' ;
+        if(senderMail === this.userEmail){
+            messageType = 'self-message';
+        }
+
+        return $(`
+        <li class="${messageType}">
+            <span>${msg}</span>
+        </li>
+        `)
+
+    }
+
     connectionHandler(){
 
         let self = this;
@@ -30,6 +48,34 @@ class chatEngine{
             //4)we confiem if a user has joned the room
             self.socket.on('user_joined' , function(data){
                 console.log("user joined " , data);
+            })
+
+            //whenver the send messga button is clicked and even is fired which send the messga e to the server
+            $('#send-message').click(function(){
+
+                let message = $('#chat-message-input').val();
+
+                if(message != ''){
+
+                    self.socket.emit('send_message' , {
+                        user_email : self.userEmail,
+                        chat_room : 'codial',
+                        msg : message
+                    });
+                    $('#chat-message-input').val("");
+                   
+                }
+
+
+            })
+
+            //we create an event detected on to recieve messages 
+            self.socket.on('receive_message' , function(data){
+
+                console.log('message recved !' , data.msg);
+                let messagePill = self.createMessagePill(data);
+                $(".chat-messages-list").append(messagePill);
+
             })
 
         });

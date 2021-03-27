@@ -27,6 +27,11 @@ module.exports.chatSockets = function(socketServer){
           io.in(data.chat_room ).emit('user_joined' , data);
           //this confirmation is recved at the front end 
         })
+        //the send message eevent is detected and it send back the message in that schat room
+        socket.on('send_message' , function(data){
+
+          io.in(data.chat_room).emit('receive_message' , data);
+        })
     })
 
 }
