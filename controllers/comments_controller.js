@@ -140,8 +140,10 @@ module.exports.create = async function( req , res ){
         
       
     } catch (err) {
-       console.log(err);
-        // return res.redirect('back');
+        return res.status(500).json({
+            error : err,
+            message :"Eror Posting comment !"
+        });
     }
     //before adding a comment check if the post on which we are trying to add the coments evven exitss or not 
 

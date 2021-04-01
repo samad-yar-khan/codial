@@ -76,6 +76,7 @@ class PostComments{
                     
                 },
                 error : function(data){ 
+                    console.log(data.error);
                     errorFlash(data.message);
                 }
             })
