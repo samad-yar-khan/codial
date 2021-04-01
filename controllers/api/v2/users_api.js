@@ -1,5 +1,6 @@
 const User = require('../../../models/user');
 const jwt = require('jsonwebtoken');
+const environment = require('../../../config/environment');
 
 module.exports.createSession = async function(req , res){
 
@@ -17,7 +18,7 @@ module.exports.createSession = async function(req , res){
         return res.json(200,{
             message :"Sign in sucessfull , here is your token . Keep it safe !",
             data :{
-                token : jwt.sign(user.toJSON() , "codial" ,  {expiresIn : '1000000'})//toJSON converts the user to json and codial is the secret encryption key usin which we decrypt and encrypt the jwt
+                token : jwt.sign(user.toJSON() , environment.jwt_secret ,  {expiresIn : '1000000'})//toJSON converts the user to json and codial is the secret encryption key usin which we decrypt and encrypt the jwt
             }
         })
 

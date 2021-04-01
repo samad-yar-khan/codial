@@ -16,6 +16,15 @@
     border-radius: 4px; }
   .posts-display .post-btns {
     margin-top: 5px; }
+    .posts-display .post-btns a:link {
+      text-decoration: none;
+      color: inherit; }
+    .posts-display .post-btns a:visited {
+      text-decoration: none;
+      color: inherit; }
+    .posts-display .post-btns a:active {
+      text-decoration: none;
+      color: inherit; }
     .posts-display .post-btns button {
       background-color: rgba(255, 255, 255, 0.076);
       padding: 5px;

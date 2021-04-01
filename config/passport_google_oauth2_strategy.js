@@ -2,13 +2,14 @@ const passport = require('passport');
 const googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const crypto = require('crypto'); //pre isntalled in node now  
 const User = require("../models/user");
+const environment = require('./environment');
 
 //tell passport to use a new stargtegy for google login
 passport.use( new googleStrategy({ // first arg. is  the options
 
-        clientID : "582821821390-gm5gfjmvb0etffmnhp31tk4db3m7dcj0.apps.googleusercontent.com",
-        clientSecret : "Va9YwBqXwevhpH3fuST1ZJyo",
-        callbackURL : "http://localhost:8000/users/auth/google/callback"//same as set in google while regesterings
+        clientID : environment.google_client_id ,
+        clientSecret : environment.google_client_secret,
+        callbackURL : environment.google_callback_url//same as set in google while regesterings
     },
     function(accessToken , refreshToken , profile , done) {//second arg is the callback function
         //this contains 4 args 1)access token like we ste up up in api authentication whene we used jwts as ascess tokes

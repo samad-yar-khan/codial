@@ -1,23 +1,13 @@
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 const path = require('path');
+const environment = require('./environment');
 
 
 //https://kinsta.com/blog/gmail-smtp-server/ 
 //port 587 is for tls hence we used that
 //transporter define show communication  taes place
-let transporter = nodemailer.createTransport({
-
-    service : 'gmail' ,
-    host : 'smtp.gmail.com'  ,
-    port : 587 , //need for tls
-    secure : 'false' ,
-    auth : {
-        user : "samad.ic19@nsut.ac.in" ,
-        pass : "pass"
-    }
-
-});
+let transporter = nodemailer.createTransport(environment.smtp);
 
 //now we need to tell that we will need ejs for template engine
 const renderTemplate = (data,relativePath) => {

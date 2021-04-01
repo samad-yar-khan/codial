@@ -1,4 +1,5 @@
 const express = require("express");
+const environment = require("./config/environment");
 const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
@@ -33,8 +34,8 @@ console.log("chat sever listening on port ",5000);
 //before the veiws are rendered we need to setup the sass middlware so files are convverted to css
 app.use(sassMiddelware({
 
-    src : './assets/scss' ,//dir location of our sass files
-    dest : './assets/css' , //this decides where to put the rendered css files 
+    src : path.join(__dirname , environment.asset_path , 'scss') ,//dir location of our sass files
+    dest :  path.join(__dirname , environment.asset_path , 'css') , //this decides where to put the rendered css files 
     debug : true , //this debug mode is true for development mode so that wecan debig and get the errors , but in the deploymnet mode this will be false
     outputStyle:'extended' , //means we want all our code in different lines
     prefix : '/css' //this tells what prefix to look for in our asstes folder when we look for css files
@@ -42,7 +43,7 @@ app.use(sassMiddelware({
 
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
-app.use(express.static('./assets'));
+app.use(express.static(environment.asset_path));
 // this makes the upoads path available to the broweser becaiuse warna hame uska controller banana padhtay
 app.use('/uploads' , express.static(__dirname + '/uploads'));
 
@@ -67,7 +68,7 @@ app.set('views' , './views');
 app.use(session({
     name:'codial' ,
     //TO DO change the secret before deploymnet in productioon mode
-    secret : 'blahblah' ,
+    secret : environment.session_cookie_key ,
     saveUninitialized : false ,
     resave : false ,
     cookie : {
