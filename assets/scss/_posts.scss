@@ -23,6 +23,22 @@
     .post-btns{
 
         margin-top: 5px;
+        a{
+            &:link{
+                text-decoration: none;
+                color: inherit;
+            }
+
+            &:visited{
+                text-decoration: none;
+                color: inherit;
+            }
+
+            &:active{
+                text-decoration: none;
+                color: inherit;
+            }
+        }
         button{
             background-color: rgba(255, 255, 255, 0.076);
             padding: 5px;
