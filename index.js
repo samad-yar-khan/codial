@@ -10,8 +10,8 @@ const cookieParser = require("cookie-parser");
 const sassMiddelware = require('node-sass-middleware'); //this middeware helps node convert sass files to css before sening back to ths server
 const flash = require ('connect-flash');//for flash messages
 const customMiddleware = require('./config/middleware');//has flash middle ware to transffer data from req to locals of res 
-
-
+const logger = require('morgan');//used to create log for our console statments in dev enviroenment
+ 
 
 //used for session cookie
 const session = require('express-session');
@@ -48,6 +48,8 @@ if(environment == 'development'){
 app.use(express.static(environment.asset_path));
 // this makes the upoads path available to the broweser becaiuse warna hame uska controller banana padhtay
 app.use('/uploads' , express.static(__dirname + '/uploads'));
+
+app.use(logger(environment.morgan.mode , environment.morgan.options));
 
 app.use(expressLayouts);
 
