@@ -31,16 +31,18 @@ const chatSocktes = require('./config/chat_socket').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log("chat sever listening on port ",5000);
 
-//before the veiws are rendered we need to setup the sass middlware so files are convverted to css
-app.use(sassMiddelware({
+//we only want the sass files to be used in development environment and not in actual production mode
+if(environment == 'development'){
+    //before the veiws are rendered we need to setup the sass middlware so files are convverted to css
+    app.use(sassMiddelware({
 
-    src : path.join(__dirname , environment.asset_path , 'scss') ,//dir location of our sass files
-    dest :  path.join(__dirname , environment.asset_path , 'css') , //this decides where to put the rendered css files 
-    debug : true , //this debug mode is true for development mode so that wecan debig and get the errors , but in the deploymnet mode this will be false
-    outputStyle:'extended' , //means we want all our code in different lines
-    prefix : '/css' //this tells what prefix to look for in our asstes folder when we look for css files
-}));
-
+        src : path.join(__dirname , environment.asset_path , 'scss') ,//dir location of our sass files
+        dest :  path.join(__dirname , environment.asset_path , 'css') , //this decides where to put the rendered css files 
+        debug : true , //this debug mode is true for development mode so that wecan debig and get the errors , but in the deploymnet mode this will be false
+        outputStyle:'extended' , //means we want all our code in different lines
+        prefix : '/css' //this tells what prefix to look for in our asstes folder when we look for css files
+    }));
+}
 //we need to  use this before the routes are called so that
 //the controllers know that we need a layout with the veiws
 app.use(express.static(environment.asset_path));
