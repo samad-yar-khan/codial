@@ -1,0 +1,99 @@
+.post-comments {
+  margin-top: 10px;
+  padding-left: 15px;
+  border-left: #322cf8 solid 4px; }
+  .post-comments .comment-form {
+    display: flex;
+    flex-direction: column; }
+    .post-comments .comment-form input {
+      padding: 4px 10px;
+      width: 100%;
+      border: 1px solid transparent;
+      border-radius: 20px;
+      min-height: 2rem;
+      height: fit-content;
+      outline: none; }
+      .post-comments .comment-form input:active {
+        outline: none; }
+    .post-comments .comment-form .post-comment-btn {
+      height: 20px;
+      width: fit-content;
+      margin-top: 10px;
+      background-color: #020024;
+      color: white;
+      font-size: 0.8rem;
+      padding: 5px;
+      border-radius: 5px;
+      outline: none; }
+      .post-comments .comment-form .post-comment-btn:hover {
+        cursor: pointer; }
+      .post-comments .comment-form .post-comment-btn:active {
+        outline: none;
+        transform: scale(0.95);
+        border: none; }
+  .post-comments .post-comments-list ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 4px;
+    padding-left: 4px; }
+    .post-comments .post-comments-list ul li {
+      margin-top: 10px;
+      padding-left: 10px;
+      border-left: 1px solid #985cf9; }
+      .post-comments .post-comments-list ul li h4 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 4px;
+        color: #985cf9; }
+      .post-comments .post-comments-list ul li .comments-content {
+        margin-top: 5px;
+        padding: 5px;
+        background-color: #985cf9;
+        width: 90%;
+        border: 2px solid #985cf9;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        color: white; }
+      .post-comments .post-comments-list ul li a {
+        text-decoration: none;
+        color: inherit; }
+        .post-comments .post-comments-list ul li a:link, .post-comments .post-comments-list ul li a:active, .post-comments .post-comments-list ul li a:visited {
+          color: inherit; }
+      .post-comments .post-comments-list ul li .comments-delete-btn {
+        height: 20px;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #020024;
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px;
+        border-radius: 5px;
+        outline: none;
+        border: none; }
+        .post-comments .post-comments-list ul li .comments-delete-btn:hover {
+          cursor: pointer; }
+        .post-comments .post-comments-list ul li .comments-delete-btn:active {
+          outline: none;
+          transform: scale(0.95);
+          border: none; }
+      .post-comments .post-comments-list ul li button.like-btn {
+        height: 20px;
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.076);
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px;
+        border-radius: 5px;
+        outline: none;
+        border: none; }
+        .post-comments .post-comments-list ul li button.like-btn:hover {
+          cursor: pointer; }
+        .post-comments .post-comments-list ul li button.like-btn:active {
+          outline: none;
+          transform: scale(0.95);
+          border: none; }
