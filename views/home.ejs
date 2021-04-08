@@ -94,11 +94,11 @@
     </div>
    
 </main>
-<script type="text/javascript" src="/javascript/home_post_comments.js"></script>
-<script type="text/javascript" src="/javascript/home_posts.js"></script>
-<script type="text/javascript" src="/javascript/toggle_like.js" ></script>
+<script type="text/javascript" src="/js/home_post_comments.js"></script>
+<script type="text/javascript" src="/js/home_posts.js"></script>
+<script type="text/javascript" src="/js/toggle_like.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
-<script src="/javascript/chat_engine.js"></script>
+<script src="/js/chat_engine.js"></script>
 <%if(locals.user) {%>
 <script>
     new chatEngine('user-chat-box' , '<%= locals.user.email %>');

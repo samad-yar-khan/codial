@@ -1,0 +1,1 @@
+let commentDisplayBtns=document.getElementsByClassName("comments-btn");for(c of commentDisplayBtns)c.addEventListener("click",(function(){var t=this.getAttribute("post-id");t="comment-section-"+t,document.getElementById(t).classList.toggle("hidden"),"Comments"==this.innerText?this.innerText="Show Less":this.innerText="Comments"}));

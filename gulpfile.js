@@ -3,8 +3,9 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const cssnano =  require('gulp-cssnano');
 const rev = require('gulp-rev');
-const uglify_es = require('gulp-uglify-es');
+const uglify = require('gulp-uglify-es').default;
 const image_min = require('gulp-imagemin');
+const del = require('del');
 
 //now in gulp we need to create task linked t what we want to minify
 
@@ -27,35 +28,47 @@ gulp.task('css' , function(done){//css is the task name
     done();
 })
 
+//minification of js
 gulp.task('js' , function(done){
 
     console.log('minifying js...');
-    gulp.src('.assets/js/**/*.js')
-    .pipe(uglify_es())
+    gulp.src('./assets/js/**/*.js')
+    .pipe(uglify())
     .pipe(rev())
-    .pipe(gulp.dest('./public/assets'))
+    .pipe(gulp.dest('./public/assets/js'))
     .pipe(rev.manifest({
         cwd:'public',
         merge : true
     }))
-    .pipe(gulp.dest('.public/assets'))
-    .done()
+    .pipe(gulp.dest('./public/assets'));
+    done();
 
 })
 
+//minification of images
 gulp.task('images' , function(done){
 
+    console.log("minifying images !")
     gulp.src('./assets/images/**/*.+(png|jpeg|svg|jpg|gif)')
     .pipe(image_min())
     .pipe(rev())
-    .pipe(gulp.dest('./public/assets'))
+    .pipe(gulp.dest('./public/assets/'))
     .pipe(rev.manifest({
         cwd : 'public',
         merge :true
     }))
-    .pipe(gulp.dest('./public/assets'))
-    .done()
+    .pipe(gulp.dest('./public/assets/'));
+    done();
 
 })
 
+//empty the public assets directory
+gulp.task('clean:assets' , function(done){
+    del.sync('./public/assets/');
+    done();
+})
 
+gulp.task('build' , gulp.series('clean:assets' , 'css' , 'js' , 'images') , function(done){
+    console.log("Building Assets !");
+    done();
+})
