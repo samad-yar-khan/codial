@@ -4,6 +4,7 @@ const sass = require('gulp-sass');
 const cssnano =  require('gulp-cssnano');
 const rev = require('gulp-rev');
 const uglify_es = require('gulp-uglify-es');
+const image_min = require('gulp-imagemin');
 
 //now in gulp we need to create task linked t what we want to minify
 
@@ -34,10 +35,27 @@ gulp.task('js' , function(done){
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
     .pipe(rev.manifest({
-        cwd:'publiv',
+        cwd:'public',
         merge : true
     }))
     .pipe(gulp.dest('.public/assets'))
     .done()
-    
+
 })
+
+gulp.task('images' , function(done){
+
+    gulp.src('./assets/images/**/*.+(png|jpeg|svg|jpg|gif)')
+    .pipe(image_min())
+    .pipe(rev())
+    .pipe(gulp.dest('./public/assets'))
+    .pipe(rev.manifest({
+        cwd : 'public',
+        merge :true
+    }))
+    .pipe(gulp.dest('./public/assets'))
+    .done()
+
+})
+
+
