@@ -1,6 +1,8 @@
 const express = require("express");
 const environment = require("./config/environment");
+const logger = require('morgan');//used to create log for our console statments in dev enviroenment
 const app = express();
+require('./config/view-helper')(app);
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
@@ -10,7 +12,6 @@ const cookieParser = require("cookie-parser");
 const sassMiddelware = require('node-sass-middleware'); //this middeware helps node convert sass files to css before sening back to ths server
 const flash = require ('connect-flash');//for flash messages
 const customMiddleware = require('./config/middleware');//has flash middle ware to transffer data from req to locals of res 
-const logger = require('morgan');//used to create log for our console statments in dev enviroenment
  
 
 //used for session cookie
