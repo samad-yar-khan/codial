@@ -11,11 +11,11 @@ module.exports = (app)=>{
     app.locals.assetPath = function(filePath){
 
         if(environment.name == 'development'){
-            return filePath; //in this case the file path which has been passed doent have a hashed file path
+            return '/'+filePath; //in this case the file path which has been passed doent have a hashed file path
         }
 
         //if the path contains a hash we need to read the keyvalue pairs fron our manifest file in publics and return the actual path
-        return JSON.parse(fs.readFileSync(path.join(__dirname , '../public/assets/rev-manifest.json')))[filePath]; //accces the key value pairs after getting the json to object
+        return '/' + JSON.parse(fs.readFileSync(path.join(__dirname , '../public/assets/rev-manifest.json')))[filePath]; //accces the key value pairs after getting the json to object
 
 
     }

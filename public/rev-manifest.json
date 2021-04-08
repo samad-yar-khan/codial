@@ -1,8 +1,8 @@
 {
-  "chat_engine.js": "chat_engine-5611ccded9.js",
-  "home.js": "home-3acbcdcd2b.js",
-  "home_post_comments.js": "home_post_comments-0358c86f8b.js",
-  "home_posts.js": "home_posts-4df5e777bd.js",
-  "toggle_like.js": "toggle_like-36e23f7a06.js",
-  "user_profile.js": "user_profile-2e460ce4de.js"
+  "js/chat_engine.js": "js/chat_engine-5611ccded9.js",
+  "js/home.js": "js/home-3acbcdcd2b.js",
+  "js/home_post_comments.js": "js/home_post_comments-0358c86f8b.js",
+  "js/home_posts.js": "js/home_posts-4df5e777bd.js",
+  "js/toggle_like.js": "js/toggle_like-36e23f7a06.js",
+  "js/user_profile.js": "js/user_profile-2e460ce4de.js"
 }
