@@ -1,26 +1,36 @@
 <link rel="stylesheet" href="<%= assetPath('css/_chat_box.css') %>">
 <%if(locals.user) {%>
-    <div id="user-chat-box" >
-        <div class ="chat-box-header">
-            
+    <div class = 'chat-box-wrapper'>
+        <div class='chat-box-header'>
+            <div class='chat-box-title'>
+                <p>
+                    CHAT BOX
+                </p>
+            </div>
+            <div class='chat-box-buttons'>
+                <i class="fas fa-arrows-alt-v chat-size-button" ></i>
+            </div>
         </div>
-        <ul class="chat-messages-list">
+        <div id="user-chat-box" >
+            
+            <ul class="chat-messages-list">
 
-            <li class="other-message">
-                <span>HEY</span>
-            </li>
+                <li class="other-message">
+                    <span>HEY</span>
+                </li>
 
-            <li class="self-message">
-                <span>Hello</span>
-            </li>
+                <li class="self-message">
+                    <span>Hello</span>
+                </li>
 
-        </ul>
+            </ul>
 
-       <div id="chat-message-input-container">
-            <input type="text" name="chat-message-input" id="chat-message-input">
-            <button id="send-message">Send</button>
-       </div>
+        <div id="chat-message-input-container">
+                <input type="text" name="chat-message-input" id="chat-message-input">
+                <button id="send-message">Send</button>
+        </div>
 
 
+        </div>
     </div>
 <% } %>

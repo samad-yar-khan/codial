@@ -1,5 +1,5 @@
 {
-  "css/_chat_box.css": "css/_chat_box-23e9ad992a.css",
+  "css/_chat_box.css": "css/_chat_box-44d2f7a83c.css",
   "css/_comments.css": "css/_comments-9b8b47a331.css",
   "css/_footer.css": "css/_footer-1f12d0589f.css",
   "css/_header.css": "css/_header-6678862a7b.css",
@@ -7,6 +7,7 @@
   "css/home.css": "css/home-c2253ccd31.css",
   "css/layout.css": "css/layout-62a0fb5b50.css",
   "css/user_profile.css": "css/user_profile-bcbc3d081f.css",
+  "js/chat_box.js": "js/chat_box-016747f647.js",
   "js/chat_engine.js": "js/chat_engine-5611ccded9.js",
   "js/home.js": "js/home-3acbcdcd2b.js",
   "js/home_post_comments.js": "js/home_post_comments-0358c86f8b.js",

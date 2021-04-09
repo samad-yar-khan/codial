@@ -1,0 +1,1 @@
+{$("#user-chat-box");let t=$(".chat-size-button"),c=$(".chat-box-wrapper");t.click((function(t){c.toggleClass("minimised-ht")}))}

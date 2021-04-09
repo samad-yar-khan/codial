@@ -140,3 +140,52 @@
 ::1 - - [08/Apr/2021:23:25:00 +0000] "GET /friends/toggle/?userID=606782d4a90bae1bd09ae980 HTTP/1.1" 200 67 "http://localhost:8000/users/profile/606782d4a90bae1bd09ae980" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
 ::1 - - [08/Apr/2021:23:25:07 +0000] "GET /users/profile/606f90414f70632e908329a7 HTTP/1.1" 200 3089 "http://localhost:8000/users/profile/606782d4a90bae1bd09ae980" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
 ::1 - - [08/Apr/2021:23:25:11 +0000] "GET / HTTP/1.1" 200 12013 "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [08/Apr/2021:23:57:50 +0000] "GET / HTTP/1.1" 200 12279 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [08/Apr/2021:23:59:19 +0000] "GET / HTTP/1.1" 200 12296 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:08:36 +0000] "GET / HTTP/1.1" 200 12317 "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:11:07 +0000] "GET / HTTP/1.1" 304 - "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:11:11 +0000] "GET / HTTP/1.1" 304 - "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:26:19 +0000] "GET / HTTP/1.1" 200 12419 "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:26:20 +0000] "GET /undefined HTTP/1.1" 404 148 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:26:24 +0000] "GET / HTTP/1.1" 304 - "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:26:25 +0000] "GET /undefined HTTP/1.1" 404 148 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:26:25 +0000] "GET / HTTP/1.1" 304 - "http://localhost:8000/users/profile/606f90414f70632e908329a7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:26:25 +0000] "GET /undefined HTTP/1.1" 404 148 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:27:01 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:27:01 +0000] "GET /undefined HTTP/1.1" 404 148 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:27:06 +0000] "GET /undefined HTTP/1.1" 404 148 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+[0mGET / [0m-[0m - ms - -[0m
+[0mGET / [32m200[0m 1016.634 ms - 25293[0m
+[0mGET / [36m304[0m 128.965 ms - -[0m
+[0mGET / [36m304[0m 199.555 ms - -[0m
+[0mGET /users/sign-in [32m200[0m 17.120 ms - 2790[0m
+[0mPOST /users/create-session [36m302[0m 88.263 ms - 46[0m
+[0mGET / [32m200[0m 240.640 ms - 43204[0m
+[0mGET / [32m200[0m 259.156 ms - 42901[0m
+[0mGET / [36m304[0m 175.798 ms - -[0m
+[0mGET / [36m304[0m 238.557 ms - -[0m
+[0mGET / [36m304[0m 182.425 ms - -[0m
+[0mGET / [36m304[0m 227.730 ms - -[0m
+[0mGET / [36m304[0m 177.319 ms - -[0m
+[0mGET / [36m304[0m 164.661 ms - -[0m
+[0mGET / [36m304[0m 133.704 ms - -[0m
+[0mGET / [36m304[0m 131.083 ms - -[0m
+[0mGET / [36m304[0m 115.524 ms - -[0m
+[0mGET / [36m304[0m 122.045 ms - -[0m
+[0mGET / [36m304[0m 127.548 ms - -[0m
+[0mGET / [36m304[0m 113.669 ms - -[0m
+[0mGET / [36m304[0m 131.542 ms - -[0m
+[0mGET /users/sign-in [36m302[0m 47.558 ms - 72[0m
+[0mGET /users/profile [33m404[0m 13.746 ms - 152[0m
+[0mGET / [36m304[0m 204.607 ms - -[0m
+[0mGET / [36m304[0m 159.207 ms - -[0m
+[0mGET / [36m304[0m 157.990 ms - -[0m
+[0mGET / [36m304[0m 126.844 ms - -[0m
+[0mGET / [36m304[0m 125.437 ms - -[0m
+[0mGET / [36m304[0m 113.959 ms - -[0m
+[0mGET / [36m304[0m 127.427 ms - -[0m
+[0mGET / [36m304[0m 122.367 ms - -[0m
+::1 - - [09/Apr/2021:00:53:15 +0000] "GET / HTTP/1.1" 200 7798 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:53:19 +0000] "GET /users/sign-in HTTP/1.1" 200 2823 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:53:24 +0000] "POST /users/create-session HTTP/1.1" 302 46 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [09/Apr/2021:00:53:24 +0000] "GET / HTTP/1.1" 200 13004 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"

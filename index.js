@@ -33,7 +33,7 @@ chatServer.listen(5000);
 console.log("chat sever listening on port ",5000);
 
 //we only want the sass files to be used in development environment and not in actual production mode
-if(environment == 'development'){
+if(environment.name == 'development'){
     //before the veiws are rendered we need to setup the sass middlware so files are convverted to css
     app.use(sassMiddelware({
 
