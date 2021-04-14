@@ -67,6 +67,10 @@
                    font-size: 12px;
                    background-color: rgb(172, 145, 197);
                 }
+                .user-mail{
+                    color:white;
+                    font-size: 8px;
+                }
             }
     
             .self-message{
@@ -80,6 +84,9 @@
                    border-radius: 5px;
                    font-size: 12px;
                    background-color: rgb(145, 175, 197);
+                }
+                .user-mail{
+                    display: none;
                 }
             }
         }

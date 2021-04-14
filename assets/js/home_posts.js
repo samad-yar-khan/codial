@@ -142,7 +142,8 @@
             <div class="post-comments-list " id="post-comments-wrapper-${post._id}">
         
                 <ul id="post-comments-${post._id}">
-        
+                    <li>
+                    </li>
                 </ul>
         
             </div>

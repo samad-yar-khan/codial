@@ -24,6 +24,7 @@ class chatEngine{
         return $(`
         <li class="${messageType}">
             <span>${msg}</span>
+            <div class="user-mail">${senderMail}</div>
         </li>
         `)
 

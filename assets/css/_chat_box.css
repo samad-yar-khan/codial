@@ -39,6 +39,9 @@
           padding: 3px 15px;
           font-size: 12px;
           background-color: #ac91c5; }
+        .chat-box-wrapper #user-chat-box .chat-messages-list .other-message .user-mail {
+          color: white;
+          font-size: 8px; }
       .chat-box-wrapper #user-chat-box .chat-messages-list .self-message {
         text-align: right;
         padding: 3px; }
@@ -49,6 +52,8 @@
           border-radius: 5px;
           font-size: 12px;
           background-color: #91afc5; }
+        .chat-box-wrapper #user-chat-box .chat-messages-list .self-message .user-mail {
+          display: none; }
     .chat-box-wrapper #user-chat-box #chat-message-input-container {
       height: 20%;
       width: 100%;

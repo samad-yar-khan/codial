@@ -189,3 +189,19 @@
 ::1 - - [09/Apr/2021:00:53:19 +0000] "GET /users/sign-in HTTP/1.1" 200 2823 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
 ::1 - - [09/Apr/2021:00:53:24 +0000] "POST /users/create-session HTTP/1.1" 302 46 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
 ::1 - - [09/Apr/2021:00:53:24 +0000] "GET / HTTP/1.1" 200 13004 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36"
+::1 - - [14/Apr/2021:17:30:13 +0000] "GET / HTTP/1.1" 200 7798 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36"
+::1 - - [14/Apr/2021:17:30:16 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36"
+[0mGET / [32m200[0m 416.345 ms - 25293[0m
+[0mGET /users/sign-in [32m200[0m 29.194 ms - 2790[0m
+[0mPOST /users/create-session [36m302[0m 415.660 ms - 46[0m
+[0mGET / [32m200[0m 428.200 ms - 43204[0m
+[0mGET / [32m200[0m 483.257 ms - 42901[0m
+[0mPOST /posts/create [32m200[0m 160.380 ms - 278[0m
+[0mGET / [32m200[0m 510.145 ms - 45642[0m
+[0mGET / [36m304[0m 691.711 ms - -[0m
+[0mGET / [36m304[0m 628.550 ms - -[0m
+[0mGET / [32m200[0m 268.358 ms - 26741[0m
+[0mGET /users/sign-in [32m200[0m 21.155 ms - 2790[0m
+[0mPOST /users/create-session [36m302[0m 188.437 ms - 46[0m
+[0mGET / [32m200[0m 700.070 ms - 42483[0m
+[0mGET / [32m200[0m 334.021 ms - 42180[0m
